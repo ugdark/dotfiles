@@ -1,0 +1,18 @@
+[user]
+	email = a_nishiyama@septeni-original.co.jp
+	name = 西山　明伸
+[core]
+	editor = vim
+	excludesfile = ~/.gitignore
+[alias]
+	st = status
+	di = diff
+	ci = commit
+[difftool "sourcetree"]
+	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
+	path = 
+[mergetool "sourcetree"]
+	cmd = /Applications/SourceTree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
+	trustExitCode = true
+[color]
+	ui = auto
