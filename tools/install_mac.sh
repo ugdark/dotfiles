@@ -51,6 +51,12 @@ ndenv install v6.7.0
 scalaenv install scala-2.11.8
 sbtenv install sbt-0.13.8
 
+# java
+# jenv add /Library/Java/JavaVirtualMachines/jdk1.7.0_51.jdk/Contents/Hom
+# java -version
+
+
+
 ndenv global v6.7.0
 scalaenv global scala-2.11.8
 sbtenv global sbt-0.13.9
