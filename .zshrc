@@ -63,4 +63,3 @@ eval "$(anyenv init - zsh)"
 # node setting localの.binを読み込む用にする コマンド補完が効かないので他にいいのが知りたい
 # ------------------------------------------------------------------------
 PATH=./node_modules/.bin:${PATH}
-npmbin(){[ $# -ne 0 ] && $(npm bin)/$*}
