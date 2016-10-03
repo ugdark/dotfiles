@@ -27,6 +27,8 @@ brew cask install skype
 brew cask install vagrant
 brew cask install virtualbox
 brew cask install 1password
+# ChefはGemより 「Chef Development Kit」で推奨
+brew cask install chefdk
 
 
 for f in .??*
