@@ -3,7 +3,7 @@
 	name = 西山　明伸
 [core]
 	editor = vim
-	excludesfile = ~/.gitignore
+	excludesfile = /Users/a_nishiyama/.gitignore_global
 [alias]
 	st = status
 	di = diff

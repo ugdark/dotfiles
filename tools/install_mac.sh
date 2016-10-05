@@ -38,11 +38,14 @@ do
     [[ "$f" == ".idea" ]] && continue
     [[ "$f" == ".gitmodules" ]] && continue
     [[ "$f" == ".gitconfig" ]] && continue #手動で書き換え
+    [[ "$f" == ".gitignore" ]] && continue #ここのignoreをglobalに適応
 
 #    echo "${HOME}/.dotfiles/$f" "${HOME}/$f"
     ln -sfn "${HOME}/.dotfiles/$f" $HOME/"$f"
 done
 
+## ここのを全体に
+ln -sfn "${HOME}/.dotfiles/.gitignore" "$HOME/.gitignore_global"
 
 anyenv install ndenv
 anyenv install jenv
