@@ -10,6 +10,7 @@ brew install vim
 brew install zsh
 brew install git
 brew install curl
+brew install peco
 
 # Mac Application installs
 brew tap caskroom/cask
