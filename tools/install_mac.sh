@@ -17,7 +17,6 @@ brew tap caskroom/cask
 brew cask install google-chrome
 brew cask install google-drive
 brew cask install google-japanese-ime
-brew cask install atom
 brew cask install intellij-idea
 brew cask install slack
 brew cask install dropbox
@@ -31,6 +30,9 @@ brew cask install 1password
 # ChefはGemより 「Chef Development Kit」で推奨
 brew cask install chefdk
 
+# editer 今はVSC
+#brew cask install atom
+brew cask install visual-studio-code
 
 for f in .??*
 do
