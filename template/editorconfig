@@ -1,0 +1,30 @@
+# EditorConfig helps developers define and maintain consistent
+# coding styles between different editors and IDEs
+# editorconfig.org
+
+#これをtrueにしておかないとルート・ディレクトリまでたどってしまいます。
+# ただroot機能のおかげで、.editorconfigが同階層に存在しない場合にルートに存在する.editorconfigファイルを参照してくれるわけです。
+#root = trueはかならず最初に書いておくと思っていてください。
+root = true
+
+[*]
+# Change these settings to your own preference
+# ハードタブかソフトタブか。tabかspaceを指定できます。
+indent_style = space
+# インデントを半角スペースいくつ分にするか。指定するのは整数であればなんでもいけると思いますが、わたしは2か4しか入れたことがないです。
+indent_size = 2
+#タブの幅なんですけど、省略するとindent_sizeの数値が適応されます。
+# tab_width = 2
+
+# We recommend you to keep these unchanged
+# 改行コードの種類lfかcrかcrlfを指定する。
+end_of_line = lf
+# 文字コード。utf-8指定しておけばよいんじゃないですかね。
+charset = utf-8
+# 行末の空白を削除するかどうか。trueかfalseを指定できます。
+trim_trailing_whitespace = true
+#最終行に空行を入れるかどうか。trueかfalse。
+insert_final_newline = true
+
+[*.md]
+trim_trailing_whitespace = false
