@@ -1,7 +1,8 @@
 # poco 設定
 
+DOT=$HOME/.dotfiles
 # === cool-peco init ===
-FPATH="$FPATH:/Users/a_nishiyama/.dotfiles/cool-peco"
+FPATH="$FPATH:${DOT}/cool-peco"
 autoload -Uz cool-peco
 cool-peco
 # ======================
