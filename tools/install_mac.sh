@@ -27,12 +27,17 @@ brew cask install skype
 brew cask install vagrant
 brew cask install virtualbox
 brew cask install 1password
+brew cask install docker
+brew cask install libreoffice
 # ChefはGemより 「Chef Development Kit」で推奨
 brew cask install chefdk
+# knife-soloもついでに入れるなら。
+chef gem install knife-solo
 
 # editer 今はVSC
 #brew cask install atom
 brew cask install visual-studio-code
+
 
 for f in .??*
 do
@@ -50,17 +55,27 @@ done
 ## ここのを全体に
 ln -sfn "${HOME}/.dotfiles/.gitignore" "$HOME/.gitignore_global"
 
+# sdkman anyenvとどっち使うか迷う。
+#curl -s "https://get.sdkman.io" | bash
+
 anyenv install ndenv
 anyenv install jenv
 anyenv install scalaenv
 anyenv install sbtenv
+anyenv install rbenv
 
 ndenv install v6.7.0
 scalaenv install scala-2.11.8
 sbtenv install sbt-0.13.8
+rbenv install 2.4.0
+
+# cask-versionsで複数versionの管理をできるようにする
+brew tap caskroom/versions
+# これでjava8 現時点で
+brew cask install java
 
 # java
-# jenv add /Library/Java/JavaVirtualMachines/jdk1.7.0_51.jdk/Contents/Hom
+# jenv add /Library/Java/JavaVirtualMachines/jdk1.7.0_51.jdk/Contents/Home
 # java -version
 
 
@@ -68,5 +83,8 @@ sbtenv install sbt-0.13.8
 ndenv global v6.7.0
 scalaenv global scala-2.11.8
 sbtenv global sbt-0.13.9
+rbenv global 2.4.0
 
-
+# chefとknife-solo を入れるなら (globalインストールになる)
+#gem install chef
+#gem install knife-solo
