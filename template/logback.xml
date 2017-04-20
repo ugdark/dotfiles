@@ -1,0 +1,207 @@
+<!--
+    参考URL:
+    http://www.nurs.or.jp/~sug/soft/log4j/log4jlb.htm
+    http://qiita.com/joe_hrmn/items/356f1e2b05cb90241414
+
+    java -jar hoge.jar -Dlogger.resource=application-logger.xml <=渡すことも可
+  -->
+<configuration>
+    <property name="LoggingDir" value="${application.home}/logs"/>
+
+    <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>%date{yyyy-MM-dd HH:mm:ss} [%thread] [%level] %logger{0} - %msg \(%file:%line\)%n</pattern>
+        </encoder>
+        <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+            <level>DEBUG</level>
+        </filter>
+    </appender>
+
+    <appender name="FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${LoggingDir}/application.log</file>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>${LoggingDir}/application_%d{yyyy-MM-dd}.log.tar.gz</fileNamePattern>
+            <maxHistory>7</maxHistory>
+        </rollingPolicy>
+        <encoder>
+            <pattern>%date{yyyy-MM-dd HH:mm:ss} [%thread] [%level] %logger{0} - %msg \(%file:%line\)%n</pattern>
+        </encoder>
+        <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+            <level>INFO</level>
+        </filter>
+    </appender>
+
+    <root>
+        <appender-ref ref="STDOUT" />
+        <appender-ref ref="FILE" />
+    </root>
+</configuration>
+
+
+
+<?xml version="1.0" encoding="UTF-8" ?>
+<configuration debug="true">
+
+  <!--
+    変数の定義を行います。
+    2行目は外部のプロパティファイルの内容から定義します。
+  -->
+  <property name="LOG_DIR" value="D:/logs" />
+  <property file="src/main/resources/variables1.properties" />
+
+  <turboFilter class="ch.qos.logback.classic.turbo.MarkerFilter">
+    <Marker>com.example.sample.animal.Cat</Marker>
+    <OnMatch>ACCEPT</OnMatch>
+  </turboFilter>
+
+  <!--
+     標準出力に出力する設定です。
+  -->
+  <appender name="STDOUT_A" class="ch.qos.logback.core.ConsoleAppender">
+    <target>System.out</target>
+    <encoder>
+      <pattern>A: %-5r %d{yyyy-MM-dd HH:mm:ss} [%t] %highlight(%-5le) %cyan(%-40.40lo{36}) - %green(%msg) %n</pattern>
+    </encoder>
+    <withJasi>true</withJasi>
+  </appender>
+
+  <!--
+     標準出力に出力する設定です。
+  -->
+  <appender name="STDOUT_B" class="ch.qos.logback.core.ConsoleAppender">
+    <target>System.out</target>
+    <encoder>
+      <pattern>B: %-5r %d{yyyy-MM-dd HH:mm:ss} [%t] %highlight(%-5le) %yellow(%-40.40lo{36}) - %green(%msg) %n</pattern>
+    </encoder>
+    <withJasi>true</withJasi>
+  </appender>
+
+  <!--
+    標準エラーに出力する設定です。
+  -->
+  <appender name="STDERR" class="ch.qos.logback.core.ConsoleAppender">
+    <target>System.err</target>
+    <encoder>
+      <pattern>E: %-5r %d{yyyy-MM-dd HH:mm:ss} [%t] %highlight(%-5le) %red(%-40.40lo{36}) - %red(%msg) %n</pattern>
+    </encoder>
+    <withJasi>true</withJasi>
+    <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+      <level>ERROR</level>
+    </filter>
+  </appender>
+
+  <!--
+    ログファイルを出力するシンプルな設定です。
+  -->
+  <appender name="FILE_A" class="ch.qos.logback.core.FileAppender">
+    <file>${LOG_DIR}/lbsample_a.log</file>
+    <encoder>
+      <pattern>%-5r %d{yyyyMMdd HH:mm:ss.SSS} [%t] %-5le %lo{36} [%file:%line] - %msg %n</pattern>
+    </encoder>
+  </appender>
+
+  <!--
+    ログファイルを出力するシンプルな設定です。
+    ファイル名やパターンの設定をプロパティファイルから取得した変数で行います。
+  -->
+  <appender name="FILE_B" class="ch.qos.logback.core.FileAppender">
+    <file>${file_b.log_dir:-D:/logs}${file_b.log_file}</file>
+    <encoder>
+      <pattern>${file_b.pattern}</pattern>
+    </encoder>
+  </appender>
+
+  <!--
+    ログファイルをアーカイブする設定です。
+    アーカイブは1分毎に行います。（テストのため）
+  -->
+  <appender name="ROLLING_A" class="ch.qos.logback.core.rolling.RollingFileAppender">
+    <file>${LOG_DIR}/roll_a_lbsample.log</file>
+    <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+      <fileNamePattern>${LOG_DIR}/rolling_lbsample_%d{yyyy-MM-dd_HH-mm}.log</fileNamePattern>
+      <maxHistory>30</maxHistory>
+    </rollingPolicy>
+    <encoder>
+      <pattern>%-5r %d{yyyyMMdd HH:mm:ss.SSS} [%t] %-5le %lo{35} - %msg %n</pattern>
+    </encoder>
+  </appender>
+
+  <!--
+     ログファイルをアーカイブする設定です。
+     アーカイブファイルは月別のディレクトリに作成します。
+  -->
+  <appender name="ROLLING_B" class="ch.qos.logback.core.rolling.RollingFileAppender">
+    <file>${LOG_DIR}/roll_b_lbsample.log</file>
+    <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+      <fileNamePattern>${LOG_DIR}/%d{yyyy-MM-dd,aux}/rolling2_lbsample_%d{yyyy-MM-dd_HH-mm}.log</fileNamePattern>
+    </rollingPolicy>
+    <encoder>
+      <pattern>%-5r %d{yyyyMMdd HH:mm:ss.SSS} [%t] %-5le %lo{35} - %msg %n</pattern>
+    </encoder>
+  </appender>
+
+  <!--
+    ログファイルをアーカイブする設定です。
+    ファイルサイズが5KB(テストのため）に達するとアーカイブします。
+  -->
+  <appender name="ROLLING_C" class="ch.qos.logback.core.rolling.RollingFileAppender">
+    <file>${LOG_DIR}/roll_c_${${DEP}.${PRI}}.log</file>
+    <rollingPolicy class="ch.qos.logback.core.rolling.FixedWindowRollingPolicy">
+      <fileNamePattern>roll_c_${LOG_DIR}/${${DEP}.${PRI}}_%i.log</fileNamePattern>
+        <minIndex>15</minIndex>
+        <maxIndex>19</maxIndex>
+    </rollingPolicy>
+    <triggeringPolicy class="ch.qos.logback.core.rolling.SizeBasedTriggeringPolicy">
+      <maxFileSize>5KB</maxFileSize>
+    </triggeringPolicy>
+    <encoder>
+      <pattern>%-5r %d{yyyyMMdd HH:mm:ss.SSS} [%t] %-5le %lo{36} - %msg %n</pattern>
+    </encoder>
+  </appender>
+
+  <!--
+    ログファイルをアーカイブする設定です。
+    時間とファイルサイズでアーカイブします。
+  -->
+  <appender name="ROLLING_D" class="ch.qos.logback.core.rolling.RollingFileAppender">
+    <file>${LOG_DIR}/roll_d_lbsample.log</file>
+    <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+      <fileNamePattern>${LOG_DIR}/roll_d_%d{yyyy-MM-dd_HH}.%i.log</fileNamePattern>
+      <timeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+        <maxFileSize>5KB</maxFileSize>
+      </timeBasedFileNamingAndTriggeringPolicy>
+    </rollingPolicy>
+    <encoder>
+      <pattern>%-5r %d{yyyyMMdd HH:mm:ss.SSS} [%t] %-5le %lo{36} - %msg %n</pattern>
+    </encoder>
+  </appender>
+
+  <logger name="com.example.sample.animal.dog" level="DEBUG" additivity="false">
+    <appender-ref ref="STDOUT_B"/>
+  </logger>
+
+  <logger name="com.example.sample.animal" level="WARN">
+    <appender-ref ref="STDERR"/>
+  </logger>
+
+  <logger name="com.example.sample.fruits" level="INFO">
+    <appender-ref ref="STDERR"/>
+  </logger>
+
+  <!--
+    上記のロガーの祖先ロガーです。
+  -->
+  <logger name="com.example.sample" level="DEBUG">
+    <appender-ref ref="STDOUT_A"/>
+  </logger>
+
+  <root level="DEBUG">
+    <appender-ref ref="FILE_A" />
+    <appender-ref ref="FILE_B" />
+    <appender-ref ref="ROLLING_A"/>
+    <appender-ref ref="ROLLING_B"/>
+    <appender-ref ref="ROLLING_C"/>
+    <appender-ref ref="ROLLING_D"/>
+  </root>
+
+</configuration>
