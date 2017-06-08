@@ -11,6 +11,10 @@ brew install zsh
 brew install git
 brew install curl
 brew install peco
+brew install terraform
+
+brew install coreutils
+brew install findutils
 
 # Mac Application installs
 brew tap caskroom/cask
