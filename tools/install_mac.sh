@@ -11,10 +11,15 @@ brew install zsh
 brew install git
 brew install curl
 brew install peco
+
+# 構成管理ツール
 brew install terraform
+brew install ansible
 
 brew install coreutils
 brew install findutils
+
+
 
 # Mac Application installs
 brew tap caskroom/cask
@@ -42,6 +47,8 @@ chef gem install knife-solo
 #brew cask install atom
 brew cask install visual-studio-code
 
+# amazon-workspaces使ってるから
+brew cask install amazon-workspaces
 
 for f in .??*
 do
