@@ -13,8 +13,10 @@ brew install curl
 brew install peco
 
 # 構成管理ツール
+brew install awscli
 brew install terraform
 brew install ansible
+
 
 brew install coreutils
 brew install findutils
