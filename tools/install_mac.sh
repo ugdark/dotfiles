@@ -52,6 +52,9 @@ brew cask install visual-studio-code
 # amazon-workspaces使ってるから
 brew cask install amazon-workspaces
 
+# 画像編集ソフト
+brew cask install gimp
+
 for f in .??*
 do
     [[ "$f" == ".git" ]] && continue
