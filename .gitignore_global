@@ -1,0 +1,10 @@
+# 全体用
+# Mac
+.DS_Store
+
+# IDE
+.idea
+*.iml
+
+# anyenv
+.**-version
