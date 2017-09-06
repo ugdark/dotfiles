@@ -6,6 +6,7 @@ killall Finder
 
 ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 brew update
+
 brew install vim
 brew install zsh
 brew install git
@@ -16,15 +17,22 @@ brew install peco
 brew install awscli
 brew install terraform
 brew install ansible
+brew install docker
 
-
+# linux互換
 brew install coreutils
 brew install findutils
 
+brew tap caskroom/cask
+# cask-versionsで複数versionの管理をできるようにする
+brew tap caskroom/versions
 
+# mysql5.6でinstall (これは辞めたい。ruby入れる時に必要だった。)
+# db関係はdockerimageに移動したい。
+
+brew install mysql@5.6
 
 # Mac Application installs
-brew tap caskroom/cask
 brew cask install google-chrome
 brew cask install google-drive
 brew cask install google-japanese-ime
@@ -35,17 +43,15 @@ brew cask install sequel-pro
 brew cask install sourcetree
 brew cask install gyazo
 brew cask install skype
-brew cask install vagrant
-brew cask install virtualbox
 brew cask install 1password
-brew cask install docker
 brew cask install libreoffice
-# ChefはGemより 「Chef Development Kit」で推奨
-brew cask install chefdk
+
+# ChefはGemより 「Chef Development Kit」で推奨 (もう使いたくない。ansible推奨:レガシーの為)
 # knife-soloもついでに入れるなら。
+brew cask install chefdk
 chef gem install knife-solo
 
-# editer 今はVSC
+# editer 今はVSC ただ悩み中
 #brew cask install atom
 brew cask install visual-studio-code
 
@@ -64,15 +70,11 @@ do
     [[ "$f" == ".gitconfig" ]] && continue #手動で書き換え
     [[ "$f" == ".gitignore" ]] && continue #ここのignoreをglobalに適応
 
-#    echo "${HOME}/.dotfiles/$f" "${HOME}/$f"
     ln -sfn "${HOME}/.dotfiles/$f" $HOME/"$f"
 done
 
 ## ここのを全体に
 ln -sfn "${HOME}/.dotfiles/.gitignore" "$HOME/.gitignore_global"
-
-# sdkman anyenvとどっち使うか迷う。
-#curl -s "https://get.sdkman.io" | bash
 
 anyenv install ndenv
 anyenv install jenv
@@ -85,22 +87,11 @@ scalaenv install scala-2.11.8
 sbtenv install sbt-0.13.8
 rbenv install 2.4.0
 
-# cask-versionsで複数versionの管理をできるようにする
-brew tap caskroom/versions
 # これでjava8 現時点で
 brew cask install java
-
-# java
-# jenv add /Library/Java/JavaVirtualMachines/jdk1.7.0_51.jdk/Contents/Home
-# java -version
-
-
 
 ndenv global v6.7.0
 scalaenv global scala-2.11.8
 sbtenv global sbt-0.13.9
 rbenv global 2.4.0
 
-# chefとknife-solo を入れるなら (globalインストールになる)
-#gem install chef
-#gem install knife-solo
