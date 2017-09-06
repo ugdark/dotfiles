@@ -27,9 +27,7 @@ brew tap caskroom/cask
 # cask-versionsで複数versionの管理をできるようにする
 brew tap caskroom/versions
 
-# mysql5.6でinstall (これは辞めたい。ruby入れる時に必要だった。)
-# db関係はdockerimageに移動したい。
-
+# mysql5.6でinstall
 brew install mysql@5.6
 
 # Mac Application installs
