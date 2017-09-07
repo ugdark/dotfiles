@@ -27,6 +27,10 @@ brew tap caskroom/cask
 # cask-versionsで複数versionの管理をできるようにする
 brew tap caskroom/versions
 
+# ゴミ箱に移動させるため
+brew install trash
+
+echo "test"
 # mysql5.6でinstall
 brew install mysql@5.6
 
@@ -35,6 +39,7 @@ brew cask install google-chrome
 brew cask install google-drive
 brew cask install google-japanese-ime
 brew cask install intellij-idea
+brew cask install jetbrains-toolbox  #  intellijを更新するのに便利
 brew cask install slack
 brew cask install dropbox
 brew cask install sequel-pro
@@ -59,17 +64,20 @@ brew cask install amazon-workspaces
 # 画像編集ソフト
 brew cask install gimp
 
-for f in .??*
-do
-    [[ "$f" == ".git" ]] && continue
-    [[ "$f" == ".DS_Store" ]] && continue
-    [[ "$f" == ".idea" ]] && continue
-    [[ "$f" == ".gitmodules" ]] && continue
-    [[ "$f" == ".gitconfig" ]] && continue #全体のは手動で書き換え
-    [[ "$f" == ".gitignore" ]] && continue #.dotfile用なので
-
-    ln -sfn "${HOME}/.dotfiles/$f" $HOME/"$f"
-done
+# リンクする。まちがってる。
+#for f in .??*
+#do
+#    [[ "$f" == ".git" ]] && continue
+#    [[ "$f" == ".DS_Store" ]] && continue
+#    [[ "$f" == ".idea" ]] && continue
+#    [[ "$f" == ".gitmodules" ]] && continue
+#    [[ "$f" == ".gitconfig" ]] && continue #全体のは手動で書き換え
+#    [[ "$f" == ".gitignore" ]] && continue #.dotfile用なので
+#
+#    # 注意めんどいから消してるけどバック必要かも
+#    rm -f $HOME/"$f"
+#    ln -sfn "${HOME}/.dotfiles/$f" $HOME/"$f"
+#done
 
 
 anyenv install ndenv

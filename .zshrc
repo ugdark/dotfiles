@@ -52,6 +52,8 @@ alias file-count="ls -1 | wc -l"
 function diff_idea () {
     /Applications/IntelliJ\ IDEA.app/Contents/MacOS/idea diff $(greadlink -f $1) $(greadlink -f $2)
 }
+alias rm='trash'
+
 # ------------------------------------------------------------------------
 # anyenv
 # ------------------------------------------------------------------------
