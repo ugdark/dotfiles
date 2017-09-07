@@ -64,20 +64,18 @@ brew cask install amazon-workspaces
 # 画像編集ソフト
 brew cask install gimp
 
-# リンクする。まちがってる。
-#for f in .??*
-#do
-#    [[ "$f" == ".git" ]] && continue
-#    [[ "$f" == ".DS_Store" ]] && continue
-#    [[ "$f" == ".idea" ]] && continue
-#    [[ "$f" == ".gitmodules" ]] && continue
-#    [[ "$f" == ".gitconfig" ]] && continue #全体のは手動で書き換え
-#    [[ "$f" == ".gitignore" ]] && continue #.dotfile用なので
-#
-#    # 注意めんどいから消してるけどバック必要かも
-#    rm -f $HOME/"$f"
-#    ln -sfn "${HOME}/.dotfiles/$f" $HOME/"$f"
-#done
+# リンクする。
+for file in $(cd .. && ls -d .??*); do
+    [[ "$file" == ".git" ]] && continue
+    [[ "$file" == ".DS_Store" ]] && continue
+    [[ "$file" == ".idea" ]] && continue
+    [[ "$file" == ".gitmodules" ]] && continue
+    [[ "$file" == ".gitconfig" ]] && continue #全体のは手動で書き換え
+    [[ "$file" == ".gitignore" ]] && continue #.dotfile用なので
+    echo ${file}
+    rm -f $HOME/"$file"
+    ln -sfn "${HOME}/.dotfiles/$file" $HOME/"$file"
+done
 
 
 anyenv install ndenv
