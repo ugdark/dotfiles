@@ -34,3 +34,22 @@ $ ndenv versions ←version確認
   v0.11.14
 ```
 
+## awscli
+credentialsの切り替え
+
+### 見る
+```
+cat ~/.aws/credentials 
+```
+
+### コマンドで指定する場合
+```
+aws s3 list --profile test-user
+```
+
+### 環境変数で切り替える場合
+```
+export AWS_DEFAULT_PROFILE=test-user
+aws s3 list
+```
+

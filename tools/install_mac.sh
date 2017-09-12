@@ -85,11 +85,13 @@ anyenv install jenv
 anyenv install scalaenv
 anyenv install sbtenv
 anyenv install rbenv
+anyenv install pyenv
 
 ndenv install v6.7.0
 scalaenv install scala-2.11.8
 sbtenv install sbt-0.13.8
 rbenv install 2.4.0
+pyenv install 3.6.2
 
 # これでjava8 現時点で
 brew cask install java
@@ -98,4 +100,9 @@ ndenv global v6.7.0
 scalaenv global scala-2.11.8
 sbtenv global sbt-0.13.9
 rbenv global 2.4.0
+pyenv global 3.6.2
+
+# awscli install
+pip install awscli
+
 
