@@ -6,6 +6,11 @@
  sh ./tools/install.sh
 ```
 
+## ごにょごにょリンク
+```bash
+ln -sfn ~/Google\ ドライブ/office/00.infra/aws ~/.aws
+
+```
 
 ## Macのアプリケーションインストール一部自動化
 
