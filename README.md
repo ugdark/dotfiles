@@ -49,7 +49,7 @@ cat ~/.aws/credentials
 
 ### コマンドで指定する場合
 ```
-aws s3 list --profile test-user
+aws s3 ls --profile test-user
 ```
 
 ### 環境変数で切り替える場合
