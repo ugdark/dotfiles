@@ -91,9 +91,15 @@ sbtenv install sbt-0.13.8
 rbenv install 2.4.0
 pyenv install 3.6.2
 
-# これでjava8 現時点で
-brew cask install java
+# java が9になったので
+# java8を入れる
+brew cask install java8
+# javaのhomeパス確認して追加　したはshell直指定版
+# export JAVA_HOME=`/System/Library/Frameworks/JavaVM.framework/Versions/A/Commands/java_home -v "1.8"`
+# PATH=${JAVA_HOME}/bin:${PATH}
+jenv add /Library/Java/JavaVirtualMachines/jdk1.8.0_152.jdk/Contents/Home
 
+jenv global jdk1.8.0_152
 ndenv global v6.7.0
 scalaenv global scala-2.11.8
 sbtenv global sbt-0.13.9
