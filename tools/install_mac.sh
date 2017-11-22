@@ -33,6 +33,7 @@ brew install trash
 echo "test"
 # mysql5.6でinstall
 brew install mysql@5.6
+brew install postgresql@9.6
 
 # Mac Application installs
 brew cask install google-chrome
