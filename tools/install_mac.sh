@@ -30,7 +30,9 @@ brew tap caskroom/versions
 # ゴミ箱に移動させるため
 brew install trash
 
-echo "test"
+# スクレイピング用
+brew install chromedriver
+
 # mysql5.6でinstall
 brew install mysql@5.6
 brew install postgresql@9.6
