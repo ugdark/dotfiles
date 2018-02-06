@@ -48,6 +48,7 @@ alias vi='/usr/bin/vim'
 # ssh をまとめる
 alias ssh-config-update="cat ~/.ssh/conf.d/common-config ~/.ssh/conf.d/*.conf > ~/.ssh/config"
 alias sjis="iconv -f cp932"
+alias utf8_to_sjis="iconv -f UTF8 -t cp932"
 alias file-count="ls -1 | wc -l"
 function diff_idea () {
     /Applications/IntelliJ\ IDEA.app/Contents/MacOS/idea diff $(greadlink -f $1) $(greadlink -f $2)
