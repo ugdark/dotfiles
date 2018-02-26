@@ -88,7 +88,7 @@ anyenv install sbtenv
 anyenv install rbenv
 anyenv install pyenv
 
-ndenv install v6.7.0
+ndenv install v9.6.1
 scalaenv install scala-2.11.8
 sbtenv install sbt-0.13.8
 rbenv install 2.4.0
@@ -103,7 +103,7 @@ brew cask install java8
 jenv add /Library/Java/JavaVirtualMachines/jdk1.8.0_152.jdk/Contents/Home
 
 jenv global jdk1.8.0_152
-ndenv global v6.7.0
+ndenv global v9.6.1
 scalaenv global scala-2.11.8
 sbtenv global sbt-0.13.9
 rbenv global 2.4.0
