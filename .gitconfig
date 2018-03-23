@@ -1,9 +1,9 @@
 [user]
-	email = a_nishiyama@septeni-original.co.jp
-	name = 西山　明伸
+	email = ugdark@gmail.com
+	name = ugdark
 [core]
 	editor = vim
-	excludesfile = /Users/a_nishiyama/.gitignore_global
+	excludesfile = ~/.dotfiles/.gitignore_global
 [alias]
 	st = status
 	di = diff

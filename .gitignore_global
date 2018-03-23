@@ -6,5 +6,5 @@
 .idea
 *.iml
 
-# anyenv
-.**-version
+# anyenv (**-versionはコミットの方がいいのか？)
+#.**-version
