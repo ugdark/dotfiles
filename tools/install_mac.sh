@@ -66,6 +66,7 @@ brew cask install docker
 brew tap ethereum/ethereum
 brew install ethereum
 brew install solidity
+brew cask install ganache
 
 # リンクする。
 for file in $(cd .. && ls -d .??*); do
@@ -90,15 +91,20 @@ ndenv install v9.6.1
 rbenv install 2.4.0
 pyenv install 3.6.2
 
+# gradleが9に対応してない為
+#sdkman入れる javaはsdkmanで管理した方がいいのかも。。まだやってない
+curl -s "https://get.sdkman.io" | bash
+
 # java が9になったので
 # java8を入れる
-#brew cask install java8
 # javaのhomeパス確認して追加　したはshell直指定版
 # export JAVA_HOME=`/System/Library/Frameworks/JavaVM.framework/Versions/A/Commands/java_home -v "1.8"`
 # PATH=${JAVA_HOME}/bin:${PATH}
-#jenv add /Library/Java/JavaVirtualMachines/jdk1.8.0_152.jdk/Contents/Home
 
-jenv global jdk1.8.0_152
+brew cask install java9
+# jenv add /Library/Java/JavaVirtualMachines/jdk-9.0.4.jdk/Contents/Home
+jenv global 9.0.4
+
 ndenv global v9.6.1
 rbenv global 2.4.0
 pyenv global 3.6.2
