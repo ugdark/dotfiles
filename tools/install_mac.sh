@@ -62,6 +62,9 @@ brew install ansible
 # caskに移動してるのが新しい
 brew cask install docker
 
+# plantUML用
+brew install graphviz
+
 # ブロックチェーン関係
 brew tap ethereum/ethereum
 brew install ethereum
@@ -86,10 +89,12 @@ anyenv install ndenv
 anyenv install jenv
 anyenv install rbenv
 anyenv install pyenv
+anyenv install goenv
 
 ndenv install v9.6.1
 rbenv install 2.4.0
 pyenv install 3.6.2
+goenv install 1.9.6
 
 # gradleが9に対応してない為
 #sdkman入れる javaはsdkmanで管理した方がいいのかも。。まだやってない
@@ -108,6 +113,7 @@ jenv global 9.0.4
 ndenv global v9.6.1
 rbenv global 2.4.0
 pyenv global 3.6.2
+goenv global 1.9.6
 
 # awscli install
 pip install awscli
