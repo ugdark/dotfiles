@@ -78,15 +78,15 @@ export PATH=$PATH:$GOPATH/bin
 source ~/.dotfiles/tools/node_module_path.sh
 
 # ------------------------------------------------------------------------
-# mysql@5.6
+# mysql@5.6 docker化
 # ------------------------------------------------------------------------
-PATH=/usr/local/opt/mysql@5.6/bin:${PATH}
+#PATH=/usr/local/opt/mysql@5.6/bin:${PATH}
 
 
 # ------------------------------------------------------------------------
-# postgresql@9.6
+# postgresql@9.6 docker化
 # ------------------------------------------------------------------------
-PATH=/usr/local/opt/postgresql@9.6/bin:${PATH}
+#PATH=/usr/local/opt/postgresql@9.6/bin:${PATH}
 
 # ------------------------------------------------------------------------
 # java8 jenvで管理してる
@@ -111,3 +111,10 @@ source $DOT/peco.sh
 #THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
 export SDKMAN_DIR="$HOME/.sdkman"
 [[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
+
+# ------------------------------------------------------------------------
+# docker
+# ------------------------------------------------------------------------
+
+# DCT機能の有効化 (改竄チェックon)
+export DOCKER_CONTENT_TRUST=1

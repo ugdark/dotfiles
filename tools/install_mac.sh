@@ -61,6 +61,7 @@ brew install terraform
 brew install ansible
 # caskに移動してるのが新しい
 brew cask install docker
+brew cask install kitematic
 
 # plantUML用
 brew install graphviz
