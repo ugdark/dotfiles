@@ -3,16 +3,18 @@
 	name = ugdark
 [core]
 	editor = vim
-	excludesfile = ~/.dotfiles/.gitignore_global
+	excludesfile = /Users/akinobu.nishiyama/.dotfiles/.gitignore_global
 [alias]
 	st = status
 	di = diff
 	ci = commit
 [difftool "sourcetree"]
-	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
+	cmd = /usr/local/bin/idea diff $LOCAL $PWD/$REMOTE
 	path = 
 [mergetool "sourcetree"]
-	cmd = /Applications/SourceTree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
+	cmd = /Applications/Sourcetree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
 	trustExitCode = true
 [color]
 	ui = auto
+[commit]
+	template = /Users/akinobu.nishiyama/.stCommitMsg

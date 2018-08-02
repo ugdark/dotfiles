@@ -59,3 +59,10 @@ brew "graphviz"
 #brew "ethereum"
 #brew "solidity"
 #cask "ganache"
+
+# あなたと一緒
+cask install java8
+
+
+# 英字キーボード
+cask karabiner-elements

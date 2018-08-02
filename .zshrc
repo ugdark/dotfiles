@@ -51,7 +51,7 @@ alias sjis="iconv -f cp932"
 alias utf8_to_sjis="iconv -f UTF8 -t cp932"
 alias file-count="ls -1 | wc -l"
 function diff_idea () {
-    /Applications/IntelliJ\ IDEA.app/Contents/MacOS/idea diff $(greadlink -f $1) $(greadlink -f $2)
+    /usr/local/bin/idea diff $(greadlink -f $1) $(greadlink -f $2)
 }
 alias rm='trash'
 
@@ -80,7 +80,12 @@ source ~/.dotfiles/tools/node_module_path.sh
 # ------------------------------------------------------------------------
 # mysql@5.6 docker化
 # ------------------------------------------------------------------------
-#PATH=/usr/local/opt/mysql@5.6/bin:${PATH}
+PATH=/usr/local/opt/mysql@5.6/bin:${PATH}
+
+# ------------------------------------------------------------------------
+# mysql@5.6 docker化
+# ------------------------------------------------------------------------
+#export PATH="/usr/local/opt/mysql@5.6/bin:$PATH"
 
 
 # ------------------------------------------------------------------------
@@ -118,3 +123,4 @@ export SDKMAN_DIR="$HOME/.sdkman"
 
 # DCT機能の有効化 (改竄チェックon)
 export DOCKER_CONTENT_TRUST=1
+
