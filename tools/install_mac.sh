@@ -30,6 +30,8 @@ brew install chromedriver
 
 # mysql5.7でinstall
 brew install mysql
+# 下でクライアントonlyで入れられるっぽい
+# brew install mysql --client-only
 
 # Mac Application installs
 brew cask install google-chrome
@@ -120,4 +122,9 @@ goenv global 1.9.6
 pip install awscli
 
 
-
+# https://github.com/dwango/scala_text/issues/122
+# brew sbtはランチャーで0.13以降は互換性を担保してるみたい。なのでenvではなくsbtを直で入れる
+## scalaのsbtはgpgを求められるので先に入れる
+#brew install gpg
+#anyenv install sbtenv
+brew install sbt
