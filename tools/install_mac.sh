@@ -68,6 +68,9 @@ brew cask install kitematic
 # plantUML用
 brew install graphviz
 
+# FTP/SFTP,S3　クライアント
+brew cask install cyberduck
+
 # ブロックチェーン関係
 brew tap ethereum/ethereum
 brew install ethereum
@@ -128,3 +131,10 @@ pip install awscli
 #brew install gpg
 #anyenv install sbtenv
 brew install sbt
+
+brew cask install google-cloud-sdk
+
+
+## sdkman install
+
+curl -s "https://get.sdkman.io" | bash
