@@ -55,6 +55,8 @@ function diff_idea () {
 }
 alias rm='trash'
 
+alias xss-off-chrome="open -na Google\ Chrome --args --disable-xss-auditor --user-data-dir='/tmp/chrome'"
+
 # ------------------------------------------------------------------------
 # anyenv
 # ------------------------------------------------------------------------
@@ -121,7 +123,7 @@ SAVEHIST=100000
 
 source $DOT/peco.sh
 
-#THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
+# THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
 export SDKMAN_DIR="$HOME/.sdkman"
 [[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
 
