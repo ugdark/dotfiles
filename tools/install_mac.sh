@@ -65,6 +65,8 @@ brew install ansible
 brew cask install docker
 brew cask install kitematic
 
+#
+brew cask install clipy
 # plantUML用
 brew install graphviz
 
