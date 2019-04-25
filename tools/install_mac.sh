@@ -77,6 +77,13 @@ brew install graphviz
 # FTP/SFTP,S3　クライアント
 brew cask install cyberduck
 
+# ansibleで必要になるsshpassを追加
+brew install http://git.io/sshpass.rb
+
+# pythonインストールでコケたら
+# CFLAGS="-I$(brew --prefix openssl)/include" \
+# LDFLAGS="-L$(brew --prefix openssl)/lib" \
+# pyenv install -v 3.4.3
 
 # リンクする。
 for file in $(cd .. && ls -d .??*); do

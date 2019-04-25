@@ -115,5 +115,6 @@ export SDKMAN_DIR="$HOME/.sdkman"
 # ------------------------------------------------------------------------
 
 # DCT機能の有効化 (改竄チェックon)
-export DOCKER_CONTENT_TRUST=1
-
+DOCKER_CONTENT_TRUST=1
+# 自作Imageの実行時は(0=OFF)にする必要あり
+#export DOCKER_CONTENT_TRUST=0
