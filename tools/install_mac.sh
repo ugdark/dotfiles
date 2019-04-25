@@ -12,6 +12,7 @@ brew install zsh
 brew install git
 brew install curl
 brew install peco
+brew install jq
 
 
 # linux互換
