@@ -13,7 +13,7 @@ brew install git
 brew install curl
 brew install peco
 brew install jq
-
+brew install wget
 
 # linux互換
 brew install coreutils
@@ -42,6 +42,9 @@ brew cask install google-japanese-ime
 brew cask install jetbrains-toolbox  #  intellijを更新するのに便利
 brew cask install slack
 brew cask install dropbox
+
+# CI
+brew install circleci
 
 # なんかオワコン感
 brew cask install sequel-pro

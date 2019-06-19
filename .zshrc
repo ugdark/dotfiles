@@ -118,3 +118,16 @@ export SDKMAN_DIR="$HOME/.sdkman"
 DOCKER_CONTENT_TRUST=1
 # 自作Imageの実行時は(0=OFF)にする必要あり
 #export DOCKER_CONTENT_TRUST=0
+
+
+# nodeのpathとかを引き継ぐ為
+alias sourcetree="open /Applications/Sourcetree.app"
+
+
+# google-cloud-sdk
+source '/usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/path.zsh.inc'
+source '/usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/completion.zsh.inc'
+
+GOOGLE_APPLICATION_CREDENTIALS=$HOME/.gcloud/study-key.json
+
+GRAALVM_HOME=$HOME/Applications/graalvm/Contents/Home
