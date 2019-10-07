@@ -57,6 +57,16 @@ alias rm='trash'
 
 alias xss-off-chrome="open -na Google\ Chrome --args --disable-xss-auditor --user-data-dir='/tmp/chrome'"
 
+alias sourcetree="open /Applications/Sourcetree.app"
+
+
+# ------------------------------------------------------------------------
+# officesetting
+# ------------------------------------------------------------------------
+if [ -e $DOT/.office ] ; then
+   source $DOT/.office
+fi
+
 # ------------------------------------------------------------------------
 # anyenv
 # ------------------------------------------------------------------------
@@ -118,10 +128,6 @@ export SDKMAN_DIR="$HOME/.sdkman"
 DOCKER_CONTENT_TRUST=1
 # 自作Imageの実行時は(0=OFF)にする必要あり
 #export DOCKER_CONTENT_TRUST=0
-
-
-# nodeのpathとかを引き継ぐ為
-alias sourcetree="open /Applications/Sourcetree.app"
 
 
 # google-cloud-sdk

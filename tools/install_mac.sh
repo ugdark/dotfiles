@@ -14,6 +14,7 @@ brew install curl
 brew install peco
 brew install jq
 brew install wget
+brew install xclip
 
 # linux互換
 brew install coreutils
@@ -75,8 +76,11 @@ brew cask install kitematic
 
 #
 brew cask install clipy
-# plantUML用
+
+brew install plantuml
 brew install graphviz
+
+
 
 # FTP/SFTP,S3　クライアント
 brew cask install cyberduck
