@@ -31,9 +31,11 @@ brew install trash
 brew install chromedriver
 
 # mysql5.7でinstall
-brew install mysql
+# brew install mysql
 # 下でクライアントonlyで入れられるっぽい
-# brew install mysql --client-only
+# brew install mysql-client
+brew cask install mysqlworkbench
+brew cask install sequel-pro
 
 # Mac Application installs
 brew cask install google-chrome
@@ -47,14 +49,9 @@ brew cask install dropbox
 # CI
 brew install circleci
 
-# なんかオワコン感
-brew cask install sequel-pro
+brew cask install mysqlworkbench
 brew cask install sourcetree
 brew cask install gyazo
-brew cask install skype
-# 買い取り版なので一度買い取り版をインストール後にはこちらでもいいのかも
-# brew cask install 1password
-# => bitwardenに移行した
 brew cask install bitwarden
 
 # officeの代わり
@@ -66,9 +63,10 @@ brew cask install visual-studio-code
 brew cask install gimp
 
 # 構成管理ツール
+brew install tfenv
 brew install awscli
 brew cask install google-cloud-sdk
-brew install terraform
+#brew install terraform
 brew install ansible
 # caskに移動してるのが新しい
 brew cask install docker
