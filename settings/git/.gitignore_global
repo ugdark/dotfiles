@@ -1,0 +1,33 @@
+# 全体用
+# Mac
+.DS_Store
+
+# IDE
+.idea
+*.iml
+
+# anyenv (**-versionはコミットの方がいいのか？)
+#.**-version
+*.local.*
+**/.local/
+.local
+
+target.bak
+.temp
+
+# my setting
+**/main/resources/*.csv
+**/application.prod.conf
+**/application.develop.conf
+**/application.staging.conf
+**/application.production.conf
+application.my.test.conf
+.memo
+*.my.*
+application.test.conf
+
+.claude/personal
+
+## 通常じゃ必要ないけど
+### 全体方針不明なため
+.envrc

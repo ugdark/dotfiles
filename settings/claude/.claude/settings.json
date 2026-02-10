@@ -1,0 +1,38 @@
+{
+  "_doc": "Claude Code グローバル設定（全プロジェクト共通）",
+  "language": "japanese",
+  "_doc_priority": "この設定はプロジェクトの .claude/settings.json や settings.local.json で上書き可能",
+  "_doc_permissions": "allow: 確認なしで実行を許可, deny: 実行を拒否",
+  "_doc_pattern": "ツール名(パターン) の形式。* はワイルドカード",
+
+  "permissions": {
+    "_doc_allow": "全プロジェクトで共通して許可するツール",
+    "allow": [
+      "WebSearch",
+      "Bash(git status:*)",
+      "Bash(git diff:*)",
+      "Bash(git log:*)",
+      "Bash(git branch:*)",
+      "Bash(ls:*)",
+
+      "_doc_dotfiles: ~/.dotfiles/ への操作を全プロジェクトから許可（plan/knowledge管理用）",
+      "Read(~/.dotfiles/**)",
+      "Edit(~/.dotfiles/**)",
+      "Write(~/.dotfiles/**)",
+      "Glob(~/.dotfiles/**)",
+      "Grep(~/.dotfiles/**)",
+      "Bash(mv ~/.dotfiles/*:*)",
+
+      "_doc_works: ~/Works/ の読み取り・検索を全プロジェクトから許可",
+      "Read(~/Works/**)",
+      "Glob(~/Works/**)",
+      "Grep(~/Works/**)"
+    ],
+
+    "_doc_deny": "全プロジェクトで禁止するツール（安全のため）",
+    "deny": [
+      "Bash(rm -rf /*:*)",
+      "Bash(git push --force:*)"
+    ]
+  }
+}

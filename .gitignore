@@ -1,0 +1,14 @@
+# 退避・一時ファイル
+.tmp/
+
+# IDE
+.idea/
+
+# Claude Code自動生成（ルート直下のみ）
+/.claude/
+
+# 会社/環境固有の設定
+*.local
+
+# ローカル専用（plans, knowledges, links等）
+local/
