@@ -1,5 +1,5 @@
 ---
-name: magi
+name: d-magi
 description: "MAGI判定 - 3つの視点（攻め/守り/バランス）から並列分析し多数決で結論を出す"
 user-invocable: true
 disable-model-invocation: true
@@ -13,7 +13,7 @@ argument-hint: "[質問や検討事項]"
 
 ## 使用場面
 
-`/magi [質問や検討事項]` で手動呼び出しのみ。
+`/d-magi [質問や検討事項]` で手動呼び出しのみ。
 
 ## 実行フロー
 

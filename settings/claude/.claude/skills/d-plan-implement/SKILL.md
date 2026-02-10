@@ -1,5 +1,5 @@
 ---
-name: personal-plan-implement
+name: d-plan-implement
 description: "Planのチェックボックスを1つずつ実装 - 実装→ユーザー確認→plan更新の順序厳守"
 user-invocable: true
 disable-model-invocation: false
@@ -16,12 +16,12 @@ Claudeは以下の状況で**自動的にこのスキルを適用**する：
 - 「次のタスクに進んで」「このチェックボックスを実装して」と言われた時
 - plan確認後に「最初のタスクに進みますか？」に対してOKが返された時
 
-また、`/personal-plan-implement` で手動呼び出しも可能。
+また、`/d-plan-implement` で手動呼び出しも可能。
 
 ## 前提
 
 - plan.mdの「対応状況」にチェックボックスが作成済み
-- `/personal-plan-review` が完了済み
+- `/d-plan-review` が完了済み
 
 ## 実行フロー（6ステップ）
 

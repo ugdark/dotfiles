@@ -1,5 +1,5 @@
 ---
-name: personal-plan-complete
+name: d-plan-complete
 description: "Plan完了 - チェックボックス確認後、planをcompletedへアーカイブ"
 user-invocable: true
 disable-model-invocation: false
@@ -16,7 +16,7 @@ Claudeは以下の状況で**自動的にこのスキルを適用**する：
 
 - 「plan完了」「planを完了させて」「アーカイブして」と言われた時
 
-また、`/personal-plan-complete` で手動呼び出しも可能。
+また、`/d-plan-complete` で手動呼び出しも可能。
 
 ## 実行フロー
 

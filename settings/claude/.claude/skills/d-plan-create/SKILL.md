@@ -1,5 +1,5 @@
 ---
-name: personal-plan-create
+name: d-plan-create
 description: "Plan作成 - 調査/改修/新規テンプレートを選択してplanファイルを作成"
 user-invocable: true
 disable-model-invocation: false
@@ -17,7 +17,7 @@ Claudeは以下の状況で**自動的にこのスキルを適用**する：
 
 - 「plan作成して」「planを作って」「新しいplanを作成して」と言われた時
 
-また、`/personal-plan-create` で手動呼び出しも可能。
+また、`/d-plan-create` で手動呼び出しも可能。
 
 ## 実行フロー
 

@@ -1,5 +1,5 @@
 ---
-name: personal-plan-resume
+name: d-plan-resume
 description: "作業再開 - active planの進捗確認と次タスクの提案"
 user-invocable: true
 disable-model-invocation: false
@@ -16,7 +16,7 @@ Claudeは以下の状況で**自動的にこのスキルを適用**する：
 
 - 「作業を再開したい」「続きをやりたい」と言われた時
 
-また、`/personal-plan-resume` で手動呼び出しも可能。
+また、`/d-plan-resume` で手動呼び出しも可能。
 
 ## 実行フロー
 
@@ -74,6 +74,6 @@ Claudeは以下の状況で**自動的にこのスキルを適用**する：
 ### Step 6: ユーザー指示待ち
 
 - ユーザーの指示を待つ
-- 「次に進む」 → `/personal-plan-implement` フローを開始
+- 「次に進む」 → `/d-plan-implement` フローを開始
 - 「別のタスク」 → 指定タスクで実装を開始
 - 「一旦停止」 → 停止して待機

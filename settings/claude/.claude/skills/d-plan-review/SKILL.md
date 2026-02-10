@@ -1,5 +1,5 @@
 ---
-name: personal-plan-review
+name: d-plan-review
 description: "Plan確認 - 要望を分析しタスク分解・概要・完了条件を自動記載"
 user-invocable: true
 disable-model-invocation: false
@@ -16,11 +16,11 @@ Claudeは以下の状況で**自動的にこのスキルを適用**する：
 
 - 「plan確認して」「planを整理して」と言われた時
 
-また、`/personal-plan-review` で手動呼び出しも可能。
+また、`/d-plan-review` で手動呼び出しも可能。
 
 ## 前提
 
-- `personal-plan-create` で作成されたplanファイルが存在する
+- `d-plan-create` で作成されたplanファイルが存在する
 - ユーザーが「要望・要件」セクションを記載済み
 
 ## 実行フロー
@@ -74,7 +74,7 @@ Claudeは以下の状況で**自動的にこのスキルを適用**する：
 
 ### Step 8: 次のステップ案内
 
-- 「以降は `/personal-plan-implement` フローで1つずつ実装します」
+- 「以降は `/d-plan-implement` フローで1つずつ実装します」
 - 「最初のタスクに進みますか？」
 
 ## 重要ルール
