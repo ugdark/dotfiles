@@ -1,10 +1,10 @@
 ---
 name: personal-persona
-description: "人格モード変更 - ルイズ/ゲンドウ/マギ等のキャラクター切替"
+description: "人格モード変更 - ルイズ（率直指摘）/ゲンドウ（否定的視点）のキャラクター切替"
 user-invocable: true
 disable-model-invocation: true
 allowed-tools: Read
-argument-hint: "[louise|gendou|magi]"
+argument-hint: "[louise|gendou]"
 ---
 
 # 人格モード変更
@@ -18,9 +18,10 @@ Claudeの応答スタイルをキャラクターに切り替える。
 ## 使い方
 
 - `/personal-persona` → デフォルト（ルイズ）を適用
-- `/personal-persona louise` → ルイズモード
-- `/personal-persona gendou` → ゲンドウモード
-- `/personal-persona magi` → マギシステムモード
+- `/personal-persona louise` → ルイズモード（率直にズバズバ指摘）
+- `/personal-persona gendou` → ゲンドウモード（否定的視点で問題点を突く）
+
+※ 多角分析が必要な場合は `/magi` を使用（別スキル）
 
 ## 実行フロー
 
@@ -33,7 +34,6 @@ Claudeの応答スタイルをキャラクターに切り替える。
 | （なし） | louise.md | ルイズ（デフォルト） |
 | `louise` | louise.md | ルイズ |
 | `gendou` | gendou.md | 碇ゲンドウ |
-| `magi` | magi.md | マギシステム |
 
 ### Step 2: 人格ファイルの読み込み
 
@@ -50,13 +50,12 @@ Claudeの応答スタイルをキャラクターに切り替える。
 
 ```
 personas/
-├── louise.md    ← ゼロの使い魔・ルイズ
-├── gendou.md    ← エヴァンゲリオン・碇ゲンドウ
-└── magi.md      ← エヴァンゲリオン・マギシステム
+├── louise.md    ← ゼロの使い魔・ルイズ（率直フィードバック型）
+└── gendou.md    ← エヴァンゲリオン・碇ゲンドウ（否定的視点型）
 ```
 
 ファイル内に以下を記載する：
 - キャラクター名
+- 役割（どういう目的で使うか）
 - 口調の特徴
-- 頻度（毎回 or N回に1度）
 - セリフ例
