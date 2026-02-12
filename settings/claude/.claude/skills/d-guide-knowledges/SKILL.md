@@ -11,12 +11,18 @@ argument-hint: "[ファイルパス]"
 
 knowledge-base に記事を書く・編集する際のフォーマットガイド。
 
+## knowledge-base のパス
+
+```
+~/.dotfiles/desk/knowledge-base/
+```
+
 ## 使用場面
 
 Claudeは以下の状況で**自動的にこのスキルを適用**する：
 
-- knowledge-base 配下のmdファイルを新規作成する時
-- knowledge-base 配下のmdファイルを編集する時
+- `~/.dotfiles/desk/knowledge-base/` 配下のmdファイルを新規作成する時
+- `~/.dotfiles/desk/knowledge-base/` 配下のmdファイルを編集する時
 - 「ナレッジを書いて」「ナレッジを追加して」と言われた時
 
 また、`/d-guide-knowledges` で手動呼び出しも可能。

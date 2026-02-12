@@ -45,7 +45,7 @@ bash ~/.dotfiles/scripts/install.sh
 │   └── macos.sh           # macOSシステム設定（defaults write）
 ├── desk/                  # ローカル専用（gitignore対象）
 │   ├── plans/             # 作業計画
-│   └── knowledges/        # ナレッジベース
+│   └── knowledge-base/    # ナレッジベース（git clone ugdark/knowledge-base）
 ├── Brewfile               # Homebrewパッケージ一覧
 ├── .gitignore
 ├── CLAUDE.md              # Claude Code用プロジェクト設定
@@ -92,7 +92,7 @@ brew bundle cleanup --file=~/.dotfiles/Brewfile --force
 
 ## プロジェクトでのplan利用
 
-各プロジェクトで `dotdesk` を実行すると、dotfilesの `desk/`（plans, knowledges）へのシンボリックリンクが作成されます。
+各プロジェクトで `dotdesk` を実行すると、dotfilesの `desk/`（plans, knowledge-base）へのシンボリックリンクが作成されます。
 
 ```bash
 cd ~/Works/my-project
@@ -100,6 +100,20 @@ dotdesk    # .desk → ~/.dotfiles/desk/ のシンボリックリンクを作成
 ```
 
 `.desk/` は `.gitignore_global` で無視されるため、プロジェクト側の git に影響しません。
+
+## desk/ のセットアップ
+
+`desk/` はgitignore対象のため、外部リポジトリは手動でcloneが必要です。
+
+```bash
+# ナレッジベース
+gh repo clone ugdark/knowledge-base ~/.dotfiles/desk/knowledge-base
+```
+
+**なぜ desk/ に直接 clone するのか：**
+- desk/ 配下なら Claude Code のグローバル権限（`~/.dotfiles/**`）でカバーされる
+- 外部パスへのシンボリックリンクだと、プロジェクトごとに書き込み承認が必要になる
+- settings.json にローカル固有のパスを書かずに済む（dotfiles は public リポジトリ）
 
 ## 環境固有の設定
 

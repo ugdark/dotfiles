@@ -43,7 +43,7 @@ bash ~/.dotfiles/scripts/install.sh
 │   └── macos.sh           # macOSシステム設定（defaults write）
 ├── desk/                 # ローカル専用（gitignore対象）
 │   ├── plans/             # 個人plan管理
-│   └── knowledges/        # ナレッジベース
+│   └── knowledge-base/    # ナレッジベース（git clone ugdark/knowledge-base）
 ├── Brewfile               # Homebrewパッケージ一覧
 ├── .gitignore
 ├── CLAUDE.md
