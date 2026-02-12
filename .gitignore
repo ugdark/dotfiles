@@ -11,4 +11,4 @@
 *.local
 
 # ローカル専用（plans, knowledges, links等）
-local/
+desk/

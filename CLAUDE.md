@@ -41,7 +41,7 @@ bash ~/.dotfiles/scripts/install.sh
 │   ├── install.sh         # メインエントリ（brew.sh → stow → macos.sh → autoupdate）
 │   ├── brew.sh            # Xcode CLT + Homebrew + brew bundle
 │   └── macos.sh           # macOSシステム設定（defaults write）
-├── local/                 # ローカル専用（gitignore対象）
+├── desk/                 # ローカル専用（gitignore対象）
 │   ├── plans/             # 個人plan管理
 │   └── knowledges/        # ナレッジベース
 ├── Brewfile               # Homebrewパッケージ一覧

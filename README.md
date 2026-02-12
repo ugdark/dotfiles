@@ -43,7 +43,7 @@ bash ~/.dotfiles/scripts/install.sh
 │   ├── install.sh         # メインエントリ（brew.sh → OMZ → stow → macos.sh → autoupdate）
 │   ├── brew.sh            # Xcode CLT + Homebrew + brew bundle
 │   └── macos.sh           # macOSシステム設定（defaults write）
-├── local/                 # ローカル専用（gitignore対象）
+├── desk/                  # ローカル専用（gitignore対象）
 │   ├── plans/             # 作業計画
 │   └── knowledges/        # ナレッジベース
 ├── Brewfile               # Homebrewパッケージ一覧
@@ -92,14 +92,14 @@ brew bundle cleanup --file=~/.dotfiles/Brewfile --force
 
 ## プロジェクトでのplan利用
 
-各プロジェクトで `dotlocal` を実行すると、dotfilesの `local/`（plans, knowledges）へのシンボリックリンクが作成されます。
+各プロジェクトで `dotdesk` を実行すると、dotfilesの `desk/`（plans, knowledges）へのシンボリックリンクが作成されます。
 
 ```bash
 cd ~/Works/my-project
-dotlocal    # .local → ~/.dotfiles/local/ のシンボリックリンクを作成
+dotdesk    # .desk → ~/.dotfiles/desk/ のシンボリックリンクを作成
 ```
 
-`.local/` は `.gitignore_global` で無視されるため、プロジェクト側の git に影響しません。
+`.desk/` は `.gitignore_global` で無視されるため、プロジェクト側の git に影響しません。
 
 ## 環境固有の設定
 

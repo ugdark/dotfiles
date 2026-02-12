@@ -43,7 +43,7 @@ Claudeは以下の状況で**自動的にこのスキルを適用**する：
 
 ### Step 4: ファイル移動
 
-- Bash: `mv ~/.dotfiles/local/plans/active/[ファイル名].md ~/.dotfiles/local/plans/completed/`
+- Bash: `mv ~/.dotfiles/desk/plans/active/[ファイル名].md ~/.dotfiles/desk/plans/completed/`
 - ファイル名は変更しない
 
 ### Step 5: 完了報告
@@ -54,7 +54,7 @@ Claudeは以下の状況で**自動的にこのスキルを適用**する：
 ### Step 6: 次のplan確認
 
 - active/ に他のplanがあるか確認
-  - Glob: `~/.dotfiles/local/plans/active/*.md`
+  - Glob: `~/.dotfiles/desk/plans/active/*.md`
 - ある場合: 「active/[ファイル名].md がありますが、これに進みますか？」
 - ない場合: 「新しいplanを作成しますか？」
 

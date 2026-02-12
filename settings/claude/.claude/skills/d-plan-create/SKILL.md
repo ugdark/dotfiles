@@ -39,9 +39,9 @@ Claudeは以下の状況で**自動的にこのスキルを適用**する：
 
 1. 今日の日付を取得（yyyyMMdd形式）
 2. active planの確認
-   - Glob: `~/.dotfiles/local/plans/active/yyyyMMdd_*.md`
+   - Glob: `~/.dotfiles/desk/plans/active/yyyyMMdd_*.md`
 3. completed planの確認
-   - Glob: `~/.dotfiles/local/plans/completed/yyyyMMdd_*.md`
+   - Glob: `~/.dotfiles/desk/plans/completed/yyyyMMdd_*.md`
 4. 両方の連番を統合し、最大値 + 1 を次の連番とする
 
 ### Step 3: テンプレート読み込みとファイル作成
@@ -49,7 +49,7 @@ Claudeは以下の状況で**自動的にこのスキルを適用**する：
 1. テンプレートを読み込む
    - Read: このスキルの `templates/{種別}.md`
 2. 新規planファイルを作成
-   - Write: `~/.dotfiles/local/plans/active/yyyyMMdd_NN_仮機能名_plan.md`
+   - Write: `~/.dotfiles/desk/plans/active/yyyyMMdd_NN_仮機能名_plan.md`
    - テンプレートの内容をそのまま書き込む
 
 ### Step 4: 完了報告
@@ -62,4 +62,4 @@ Claudeは以下の状況で**自動的にこのスキルを適用**する：
 
 - activeとcompletedの**両方**を確認して連番の重複を防ぐ
 - テンプレート内容はそのまま書き込む（編集しない）
-- planファイル保存先: `~/.dotfiles/local/plans/`
+- planファイル保存先: `~/.dotfiles/desk/plans/`

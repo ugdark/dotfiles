@@ -101,4 +101,4 @@ Claudeは以下の状況で**自動的にこのスキルを適用**する：
 
 ## planファイルパス
 
-`~/.dotfiles/local/plans/`
+`~/.dotfiles/desk/plans/`

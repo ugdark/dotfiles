@@ -46,7 +46,7 @@ alias sjis="iconv -f cp932"
 alias utf8_to_sjis="iconv -f UTF8 -t cp932"
 alias file-count="ls -1 | wc -l"
 alias rm='trash'
-alias dotlocal='ln -sf ~/.dotfiles/local .local'
+alias dotdesk='ln -sf ~/.dotfiles/desk .desk'
 # ------------------------------------------------------------------------
 # ヒストリ
 # ------------------------------------------------------------------------

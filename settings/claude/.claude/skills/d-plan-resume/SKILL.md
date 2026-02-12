@@ -24,7 +24,7 @@ Claudeは以下の状況で**自動的にこのスキルを適用**する：
 
 - ユーザーに「どのplanで作業していましたか？」と確認
 - または active/ のplan一覧を表示
-  - Glob: `~/.dotfiles/local/plans/active/*.md`
+  - Glob: `~/.dotfiles/desk/plans/active/*.md`
 
 ### Step 2: planファイルの読み込み
 

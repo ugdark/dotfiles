@@ -29,7 +29,7 @@ Claudeは以下の状況で**自動的にこのスキルを適用**する：
 
 - 直前に作成した、または指定されたplan.mdを読み込む
 - 不明な場合は active/ をGlobで確認し、最新のplanを使用
-  - Glob: `~/.dotfiles/local/plans/active/*.md`
+  - Glob: `~/.dotfiles/desk/plans/active/*.md`
 
 ### Step 2: 要望・要件の分析
 
@@ -79,4 +79,4 @@ Claudeは以下の状況で**自動的にこのスキルを適用**する：
 
 ## 重要ルール
 
-- planファイルパス: `~/.dotfiles/local/plans/`
+- planファイルパス: `~/.dotfiles/desk/plans/`
