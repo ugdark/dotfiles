@@ -18,29 +18,37 @@ bash ~/.dotfiles/scripts/install.sh
 
 - Homebrew のインストール（未インストールの場合）
 - Brewfile に基づくパッケージ一括インストール
-- Stow によるシンボリックリンク作成（zsh, vim, git, mysql）
+- Oh My Zsh のインストール
+- Stow によるシンボリックリンク作成（zsh, vim, git, editorconfig, claude）
+- macOS システム設定の適用
 
 ## ディレクトリ構成
 
 ```
 ~/.dotfiles/
-├── settings/          # stow 管理対象（-d settings -t $HOME）
-│   ├── zsh/.zshrc
-│   ├── vim/.vimrc
+├── settings/              # stow管理対象（stow -d settings -t $HOME）
+│   ├── zsh/
+│   │   └── .zshrc
+│   ├── vim/
+│   │   └── .vimrc
 │   ├── git/
 │   │   ├── .gitconfig
 │   │   └── .gitignore_global
-│   ├── editorconfig/.editorconfig
-│   └── claude/.claude/skills/
-├── scripts/           # セットアップスクリプト
-│   ├── install.sh     # メインエントリ
-│   ├── brew.sh        # Homebrew セットアップ
-│   └── macos.sh       # macOS システム設定
-├── local/             # ローカル専用（gitignore）
-│   ├── plans/         # 作業計画
-│   └── knowledges/    # ナレッジベース
-├── Brewfile           # Homebrew パッケージ一覧
-├── CLAUDE.md          # Claude Code 用プロジェクト設定
+│   ├── editorconfig/
+│   │   └── .editorconfig
+│   └── claude/.claude/
+│       ├── settings.json
+│       └── skills/        # Claude Code用スキル定義（d-* prefix）
+├── scripts/               # セットアップスクリプト
+│   ├── install.sh         # メインエントリ（brew.sh → OMZ → stow → macos.sh → autoupdate）
+│   ├── brew.sh            # Xcode CLT + Homebrew + brew bundle
+│   └── macos.sh           # macOSシステム設定（defaults write）
+├── local/                 # ローカル専用（gitignore対象）
+│   ├── plans/             # 作業計画
+│   └── knowledges/        # ナレッジベース
+├── Brewfile               # Homebrewパッケージ一覧
+├── .gitignore
+├── CLAUDE.md              # Claude Code用プロジェクト設定
 └── README.md
 ```
 
@@ -81,6 +89,17 @@ brew bundle cleanup --file=~/.dotfiles/Brewfile
 # Brewfile にないパッケージを削除（確認後に実行）
 brew bundle cleanup --file=~/.dotfiles/Brewfile --force
 ```
+
+## プロジェクトでのplan利用
+
+各プロジェクトで `dotlocal` を実行すると、dotfilesの `local/`（plans, knowledges）へのシンボリックリンクが作成されます。
+
+```bash
+cd ~/Works/my-project
+dotlocal    # .local → ~/.dotfiles/local/ のシンボリックリンクを作成
+```
+
+`.local/` は `.gitignore_global` で無視されるため、プロジェクト側の git に影響しません。
 
 ## 環境固有の設定
 

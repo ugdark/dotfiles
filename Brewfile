@@ -101,15 +101,4 @@ cask "google-drive"
 cask "google-japanese-ime"
 cask "gyazo"                  # スクリーンショット
 cask "postman"                # API テストツール
-cask "zap"                    # OWASP ZAP セキュリティテスト
 
-# ============================================================
-# 以下コメントアウト（必要に応じて有効化）
-# ============================================================
-#brew "graphviz"              # グラフ描画
-#brew "plantuml"              # UML図作成
-#brew "tfenv"                 # Terraform バージョン管理
-#brew "awscli"                # AWS CLI
-#brew "ansible"               # 構成管理
-#cask "bitwarden"             # パスワード管理
-#cask "gimp"                  # 画像編集

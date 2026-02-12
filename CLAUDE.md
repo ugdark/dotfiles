@@ -18,13 +18,25 @@ bash ~/.dotfiles/scripts/install.sh
 ```
 ~/.dotfiles/
 ├── settings/              # stow管理対象（stow -d settings -t $HOME）
-│   ├── zsh/.zshrc
-│   ├── vim/.vimrc
+│   ├── zsh/
+│   │   └── .zshrc
+│   ├── vim/
+│   │   └── .vimrc
 │   ├── git/
 │   │   ├── .gitconfig
 │   │   └── .gitignore_global
+│   ├── editorconfig/
+│   │   └── .editorconfig
 │   └── claude/.claude/
-│       └── skills/        # Claude Code用スキル定義
+│       ├── settings.json
+│       └── skills/        # Claude Code用スキル定義（d-* prefix）
+│           ├── d-persona/     # 人格切替（ルイズ/ゲンドウ）
+│           ├── d-magi/        # MAGI判定（3並列エージェント分析）
+│           ├── d-plan-create/ # Plan作成
+│           ├── d-plan-review/ # Plan確認
+│           ├── d-plan-implement/ # Plan実装
+│           ├── d-plan-complete/  # Plan完了
+│           └── d-plan-resume/    # 作業再開
 ├── scripts/               # セットアップスクリプト
 │   ├── install.sh         # メインエントリ（brew.sh → stow → macos.sh → autoupdate）
 │   ├── brew.sh            # Xcode CLT + Homebrew + brew bundle
@@ -33,7 +45,6 @@ bash ~/.dotfiles/scripts/install.sh
 │   ├── plans/             # 個人plan管理
 │   └── knowledges/        # ナレッジベース
 ├── Brewfile               # Homebrewパッケージ一覧
-├── .editorconfig
 ├── .gitignore
 ├── CLAUDE.md
 └── README.md

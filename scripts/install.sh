@@ -12,7 +12,21 @@ echo "==> dotfiles setup: ${DOTFILES_DIR}"
 # 1. Homebrew + パッケージインストール
 bash "${DOTFILES_DIR}/scripts/brew.sh"
 
-# 2. stow でシンボリックリンク作成
+# 2. Oh My Zsh インストール
+# 公式インストーラは .zshrc を上書きするため、git cloneで直接配置する
+# .zshrc は stow で管理しているので、OMZ側に触らせない
+if [ ! -d "$HOME/.oh-my-zsh" ]; then
+  echo "==> Installing Oh My Zsh..."
+  git clone https://github.com/ohmyzsh/ohmyzsh.git "$HOME/.oh-my-zsh"
+else
+  echo "==> Oh My Zsh already installed."
+fi
+
+# 3. 必要なディレクトリ作成
+echo "==> Creating required directories..."
+mkdir -p "$HOME/.vimbackup"
+
+# 4. stow でシンボリックリンク作成
 echo "==> Creating symlinks with stow..."
 STOW_PACKAGES=(zsh vim git editorconfig claude)
 
@@ -25,10 +39,10 @@ for pkg in "${STOW_PACKAGES[@]}"; do
   fi
 done
 
-# 3. macOS システム設定
+# 5. macOS システム設定
 bash "${DOTFILES_DIR}/scripts/macos.sh"
 
-# 4. Homebrew 自動更新
+# 6. Homebrew 自動更新
 echo "==> Setting up brew autoupdate..."
 brew autoupdate start --upgrade --cleanup
 
