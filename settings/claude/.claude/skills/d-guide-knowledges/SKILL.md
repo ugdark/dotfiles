@@ -17,6 +17,8 @@ knowledge-base に記事を書く・編集する際のフォーマットガイ�
 ~/.dotfiles/desk/knowledge-base/
 ```
 
+**注意: knowledge-base は独立したgitリポジトリ**（`ugdark/knowledge-base`）であり、dotfilesリポジトリとは別管理。記事の変更後は knowledge-base リポジトリ側でcommit/pushが必要。
+
 ## 使用場面
 
 Claudeは以下の状況で**自動的にこのスキルを適用**する：
@@ -44,6 +46,19 @@ Claudeは以下の状況で**自動的にこのスキルを適用**する：
 ### Step 3: フォーマットルールの適用
 
 以下のルールに従ってナレッジを作成・修正する。
+
+### Step 4: 関連ファイルの更新
+
+記事の新規作成・削除・タイトル変更を行った場合、以下のファイルも連動して更新する。
+
+- **README.md** (`~/.dotfiles/desk/knowledge-base/README.md`): カテゴリ別の記事一覧
+- **_sidebar.md** (`~/.dotfiles/desk/knowledge-base/_sidebar.md`): Docsifyサイドバー用リンク一覧
+
+更新ルール：
+- 記事を追加したら、該当カテゴリのセクションにリンクを追加する
+- 記事を削除したら、該当リンクを削除する。カテゴリ内の記事が0件になった場合はカテゴリセクションごと削除する
+- カテゴリを新規追加した場合はセクションを追加し、スキル内のカテゴリ一覧も更新する
+- 既存記事の編集のみ（タイトル変更なし）の場合は更新不要
 
 ## フォーマットルール
 
@@ -76,7 +91,6 @@ updated: 2026-02-12
 | development | development/ | 開発手法・ツール |
 | claude-code | claude-code/ | Claude Code |
 | devops | devops/ | DevOps |
-| troubleshooting | troubleshooting/ | トラブルシュート |
 
 新カテゴリが必要な場合はディレクトリを追加し、この一覧も更新する。
 
