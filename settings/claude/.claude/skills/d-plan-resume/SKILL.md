@@ -22,13 +22,13 @@ Claudeは以下の状況で**自動的にこのスキルを適用**する：
 
 ### Step 1: plan確認
 
-- ユーザーに「どのplanで作業していましたか？」と確認
-- または active/ のplan一覧を表示
-  - Glob: `~/.dotfiles/desk/plans/active/*.md`
+- Glob: `~/.dotfiles/desk/plans/active/*.md` でactive planを取得
+- **1件のみの場合**: 自動的にそのplanを選択（ユーザーに聞かない）
+- **2件以上の場合**: 一覧を表示し、ユーザーに選択を聞く
 
 ### Step 2: planファイルの読み込み
 
-- Read: ユーザーが指定したplan.md
+- Read: 選択されたplan.md
 
 ### Step 3: 対応状況の分析
 
