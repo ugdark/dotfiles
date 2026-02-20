@@ -9,10 +9,8 @@
     "_doc_allow": "全プロジェクトで共通して許可するツール",
     "allow": [
       "WebSearch",
-      "Bash(git status:*)",
-      "Bash(git diff:*)",
-      "Bash(git log:*)",
-      "Bash(git branch:*)",
+      "Bash(git *)",
+      "Bash(gh *)",
       "Bash(ls:*)",
 
       "_doc_dotfiles: ~/.dotfiles/ への操作を全プロジェクトから許可（plan/knowledge管理用）",
@@ -32,7 +30,10 @@
     "_doc_deny": "全プロジェクトで禁止するツール（安全のため）",
     "deny": [
       "Bash(rm -rf /*:*)",
-      "Bash(git push --force:*)"
+      "Bash(git push --force *)",
+      "Bash(git reset --hard *)",
+      "Bash(gh repo delete *)",
+      "Bash(gh pr close *)"
     ]
   }
 }
