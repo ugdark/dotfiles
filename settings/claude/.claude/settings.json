@@ -8,23 +8,27 @@
   "permissions": {
     "_doc_allow": "全プロジェクトで共通して許可するツール",
     "allow": [
+      "_doc_read: 検索・読み取り系は副作用なしのため全プロジェクト許可",
       "WebSearch",
-      "Bash(git *)",
-      "Bash(gh *)",
-      "Bash(ls:*)",
+      "Read",
+      "Glob",
+      "Grep",
 
-      "_doc_dotfiles: ~/.dotfiles/ への操作を全プロジェクトから許可（plan/knowledge管理用）",
-      "Read(~/.dotfiles/**)",
+      "_doc_write: ~/Works/ と ~/.dotfiles/ への書き込みを許可",
+      "Edit(~/Works/**)",
+      "Write(~/Works/**)",
       "Edit(~/.dotfiles/**)",
       "Write(~/.dotfiles/**)",
-      "Glob(~/.dotfiles/**)",
-      "Grep(~/.dotfiles/**)",
-      "Bash(mv ~/.dotfiles/*:*)",
 
-      "_doc_works: ~/Works/ の読み取り・検索を全プロジェクトから許可",
-      "Read(~/Works/**)",
-      "Glob(~/Works/**)",
-      "Grep(~/Works/**)"
+      "_doc_bash: git/gh/sbt/基本コマンド",
+      "Bash(git *)",
+      "Bash(gh *)",
+      "Bash(sbt *)",
+      "Bash(ls:*)",
+      "Bash(mv *)",
+
+      "_doc_ide: IntelliJ IDE統合のMCPツール（Edit/Writeとは別名）",
+      "Update"
     ],
 
     "_doc_deny": "全プロジェクトで禁止するツール（安全のため）",
