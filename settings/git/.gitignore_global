@@ -12,3 +12,7 @@
 
 # direnv（環境変数にトークン等の機密情報を含むため）
 .envrc
+
+# mise（プロジェクト毎のランタイムバージョン指定）
+.mise.toml
+.tool-versions

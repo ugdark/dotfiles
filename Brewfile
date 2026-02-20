@@ -35,8 +35,8 @@ brew "pinentry-mac"           # brew autoupdate --sudo 用
 # ============================================================
 # 開発環境 / ランタイム管理
 # ============================================================
-brew "anyenv"                 # **env 統合管理
-brew "volta"                  # Node.js バージョン管理
+brew "mise"                   # ランタイムバージョン管理（Java, Node.js, yarn等）
+brew "sbt"                    # Scala ビルドツール
 brew "deno"                   # Deno ランタイム
 brew "direnv"                 # ディレクトリ毎の環境変数
 

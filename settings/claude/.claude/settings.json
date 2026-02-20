@@ -27,6 +27,9 @@
       "Bash(ls:*)",
       "Bash(mv *)",
 
+      "_doc_skill: スキル実行を確認なしで許可",
+      "Skill",
+
       "_doc_ide: IntelliJ IDE統合のMCPツール（Edit/Writeとは別名）",
       "Update"
     ],
