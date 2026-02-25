@@ -24,7 +24,7 @@
       "Bash(git *)",
       "Bash(gh *)",
       "Bash(sbt *)",
-      "Bash(ls:*)",
+      "Bash(ls *)",
       "Bash(mv *)",
 
       "_doc_skill: スキル実行を確認なしで許可",
