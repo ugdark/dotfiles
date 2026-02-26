@@ -33,8 +33,10 @@
       "_doc_mcp_github: GitHub MCPツール（tokenの権限範囲内で動作）",
       "mcp__github__*",
 
-      "_doc_ide: IntelliJ IDE統合のMCPツール（Edit/Writeとは別名）",
-      "Update"
+      "_doc_ide: IntelliJ IDE統合のMCPツール（Edit/Writeとは別名。#6850修正待ちで複数形式記載）",
+      "Update",
+      "Update(*)",
+      "Update(**)"
     ],
 
     "_doc_deny": "全プロジェクトで禁止するツール（安全のため）",
