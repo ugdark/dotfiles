@@ -7,7 +7,7 @@ eval "$(/opt/homebrew/bin/brew shellenv)"
 # ------------------------------------------------------------------------
 export ZSH="$HOME/.oh-my-zsh"
 ZSH_THEME="robbyrussell"
-plugins=(git mise docker gh brew z direnv)
+plugins=(git mise docker gh brew z)
 source $ZSH/oh-my-zsh.sh
 # ------------------------------------------------------------------------
 # 言語・ロケール
