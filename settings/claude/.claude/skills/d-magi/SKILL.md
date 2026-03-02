@@ -3,7 +3,7 @@ name: d-magi
 description: "MAGI判定 - 3つの視点（攻め/守り/バランス）から並列分析し多数決で結論を出す"
 user-invocable: true
 disable-model-invocation: true
-allowed-tools: Read, Task
+allowed-tools: Read, Agent
 argument-hint: "[質問や検討事項]"
 ---
 

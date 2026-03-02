@@ -3,7 +3,7 @@ name: d-plan-create
 description: "Plan作成 - 新規/改修/バグ調査テンプレートを選択してplanファイルを作成"
 user-invocable: true
 disable-model-invocation: false
-allowed-tools: Read, Write, Glob
+allowed-tools: Read, Write, Glob, AskUserQuestion
 argument-hint: "[feature|bugfix|investigation]"
 ---
 
@@ -32,8 +32,10 @@ Claudeは以下の状況で**自動的にこのスキルを適用**する：
 | `investigation` | investigation.md | バグ調査 |
 | （なし） | ユーザーに選択を聞く | |
 
-引数がない場合はユーザーに以下を確認する：
-- 「新規（feature）、改修（bugfix）、バグ調査（investigation）のどれですか？」
+引数がない場合は AskUserQuestion で選択肢を表示する：
+- feature: 新規機能の追加
+- bugfix: 既存機能の改修・修正
+- investigation: バグ調査・原因分析
 
 ### Step 2: 日付取得と連番計算
 

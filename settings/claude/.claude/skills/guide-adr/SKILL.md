@@ -1,6 +1,8 @@
 ---
 name: guide-adr
-description: ユーザーがADR（Architecture Decision Records）の作成、移動、または形式の整合性チェックを依頼した場合に使用します。ADRは技術的決定を文書化するための重要なドキュメントです。
+description: "ADR作成とメンテナンス - Architecture Decision Recordsの作成・移動・形式チェック"
+user-invocable: true
+disable-model-invocation: false
 allowed-tools: Read, Write, Edit, Glob
 ---
 
