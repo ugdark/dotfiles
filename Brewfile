@@ -38,7 +38,6 @@ brew "pinentry-mac"           # brew autoupdate --sudo 用
 brew "mise"                   # ランタイムバージョン管理（Java, Node.js, yarn等）
 brew "sbt"                    # Scala ビルドツール
 brew "deno"                   # Deno ランタイム
-brew "direnv"                 # ディレクトリ毎の環境変数
 
 # ============================================================
 # API / プロトコル
