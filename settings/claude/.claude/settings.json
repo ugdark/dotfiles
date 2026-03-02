@@ -14,21 +14,18 @@
       "Glob",
       "Grep",
 
+      "_doc_bash: 全コマンド許可（危険操作はdenyでブロック）",
+      "Bash(*)",
+
+      "_doc_skill: スキル実行を確認なしで許可",
+      "Skill",
+
       "_doc_write: ~/Works/ と ~/.dotfiles/ への書き込みを許可",
       "Edit(~/Works/**)",
       "Write(~/Works/**)",
       "Edit(~/.dotfiles/**)",
       "Write(~/.dotfiles/**)",
 
-      "_doc_bash: git/gh/sbt/基本コマンド",
-      "Bash(git *)",
-      "Bash(gh *)",
-      "Bash(sbt *)",
-      "Bash(ls *)",
-      "Bash(mv *)",
-
-      "_doc_skill: スキル実行を確認なしで許可",
-      "Skill",
 
       "_doc_mcp_github: GitHub MCPツール（tokenの権限範囲内で動作）",
       "mcp__github__*",
@@ -39,11 +36,25 @@
 
     "_doc_deny": "全プロジェクトで禁止するツール（安全のため）",
     "deny": [
-      "Bash(rm -rf /*:*)",
+      "_doc_filesystem: ファイル/ディレクトリの破壊的削除",
+      "Bash(rm -rf *)",
+      "Bash(sudo *)",
+
+      "_doc_git: 履歴改変・データ消失系",
       "Bash(git push --force *)",
+      "Bash(git push * --force *)",
+      "Bash(git push --force-with-lease *)",
       "Bash(git reset --hard *)",
+      "Bash(git clean -f*)",
+      "Bash(git checkout -- *)",
+      "Bash(git branch -D *)",
+      "Bash(git stash drop *)",
+      "Bash(git stash clear *)",
+
+      "_doc_gh: GitHub上の破壊的操作",
       "Bash(gh repo delete *)",
-      "Bash(gh pr close *)"
+      "Bash(gh pr close *)",
+      "Bash(gh issue close *)"
     ]
   }
 }
