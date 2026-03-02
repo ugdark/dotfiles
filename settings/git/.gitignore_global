@@ -5,14 +5,10 @@
 .idea
 *.iml
 
-# ローカル設定（環境固有・機密）
-.local
-*.local.*
+# 作業設定（環境固有・機密）
 .desk
-
-# direnv（環境変数にトークン等の機密情報を含むため）
-.envrc
+*.local.*
 
 # mise（プロジェクト毎のランタイムバージョン指定）
 .mise.toml
-.tool-versions
+.mise.*.toml
