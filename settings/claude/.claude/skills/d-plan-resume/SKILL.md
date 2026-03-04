@@ -3,7 +3,7 @@ name: d-plan-resume
 description: "作業再開 - active planの進捗確認と次タスクの提案"
 user-invocable: true
 disable-model-invocation: false
-allowed-tools: Read, Glob
+allowed-tools: Read, Glob, AskUserQuestion
 ---
 
 # 作業の再開
@@ -24,7 +24,7 @@ Claudeは以下の状況で**自動的にこのスキルを適用**する：
 
 - Glob: `~/.dotfiles/desk/plans/active/*.md` でactive planを取得
 - **1件のみの場合**: 自動的にそのplanを選択（ユーザーに聞かない）
-- **2件以上の場合**: 一覧を表示し、ユーザーに選択を聞く
+- **2件以上の場合**: AskUserQuestion で一覧を表示し、ユーザーに選択を聞く
 
 ### Step 2: planファイルの読み込み
 

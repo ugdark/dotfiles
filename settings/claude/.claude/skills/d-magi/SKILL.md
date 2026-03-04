@@ -3,7 +3,7 @@ name: d-magi
 description: "MAGI判定 - 3つの視点（攻め/守り/バランス）から並列分析し多数決で結論を出す"
 user-invocable: true
 disable-model-invocation: true
-allowed-tools: Read, Agent
+allowed-tools: Read, Agent, AskUserQuestion
 argument-hint: "[質問や検討事項]"
 ---
 
@@ -26,7 +26,7 @@ argument-hint: "[質問や検討事項]"
 
 ### Step 2: 3エージェント並列起動
 
-`$ARGUMENTS` をユーザーの質問として、**Task ツールで3つのサブエージェントを同時に起動する**。
+`$ARGUMENTS` をユーザーの質問として、**Agent ツールで3つのサブエージェントを同時に起動する**。
 
 各エージェントへのプロンプトは以下の形式：
 
@@ -44,7 +44,7 @@ argument-hint: "[質問や検討事項]"
 - 最後に推奨アクションを1-2行で
 ```
 
-**重要**: 3つのTaskは必ず**並列（同一メッセージ内で同時に）** 起動すること。直列に実行しない。
+**重要**: 3つのAgentは必ず**並列（同一メッセージ内で同時に）** 起動すること。直列に実行しない。
 
 ### Step 3: 結果の集約と判定
 
@@ -73,4 +73,4 @@ argument-hint: "[質問や検討事項]"
 - 各エージェントの subagent_type は `general-purpose` を使用
 - 各エージェントの model は `haiku` を使用（コスト最適化）
 - 結果集約時、少数意見の価値も必ず補足する
-- `$ARGUMENTS` が空の場合は「何について判定しますか？」と聞く
+- `$ARGUMENTS` が空の場合は AskUserQuestion で「何について判定しますか？」と聞く

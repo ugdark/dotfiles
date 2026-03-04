@@ -3,8 +3,8 @@ name: d-persona
 description: "人格モード変更 - ルイズ（率直指摘）/ゲンドウ（否定的視点）のキャラクター切替"
 user-invocable: true
 disable-model-invocation: true
-allowed-tools: Read
-argument-hint: "[louise|gendou]"
+allowed-tools: Read, Glob
+argument-hint: "[persona名]"
 ---
 
 # 人格モード変更
@@ -29,11 +29,9 @@ Claudeの応答スタイルをキャラクターに切り替える。
 
 `$ARGUMENTS[0]` で人格を判定する。
 
-| 引数 | ファイル | キャラクター |
-|------|---------|------------|
-| （なし） | louise.md | ルイズ（デフォルト） |
-| `louise` | louise.md | ルイズ |
-| `gendou` | gendou.md | 碇ゲンドウ |
+- 引数ありの場合: `personas/$ARGUMENTS[0].md` を使用
+- 引数なしの場合: デフォルトで `personas/louise.md` を使用
+- 不明な引数の場合: Glob で `personas/*.md` を検索し、利用可能なペルソナ一覧を表示する
 
 ### Step 2: 人格ファイルの読み込み
 
