@@ -30,9 +30,9 @@ Claudeは以下の状況で**自動的にこのスキルを適用**する：
 | `feature` | feature.md | 新規 |
 | `bugfix` | bugfix.md | 改修 |
 | `investigation` | investigation.md | バグ調査 |
-| （なし） | ユーザーに選択を聞く | |
+| （なし） | **必ず**ユーザーに選択を聞く | |
 
-引数がない場合は AskUserQuestion で選択肢を表示する：
+**引数がない場合、自分で判断せず必ず AskUserQuestion を実行すること。** 選択肢：
 - feature: 新規機能の追加
 - bugfix: 既存機能の改修・修正
 - investigation: バグ調査・原因分析
