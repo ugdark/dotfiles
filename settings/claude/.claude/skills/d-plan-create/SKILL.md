@@ -21,21 +21,28 @@ Claudeは以下の状況で**自動的にこのスキルを適用**する：
 
 ## 実行フロー
 
-### Step 1: テンプレート選択
+### Step 1: テンプレート選択（最初に必ず実行）
 
-`$ARGUMENTS[0]` でテンプレート種別を判定する。
+**引数あり**の場合（`$ARGUMENTS[0]` が `feature` / `bugfix` / `investigation`）:
+→ そのテンプレートを使用し、Step 2へ進む
 
-| 引数 | テンプレート | 用途 |
-|------|------------|------|
-| `feature` | feature.md | 新規 |
-| `bugfix` | bugfix.md | 改修 |
-| `investigation` | investigation.md | バグ調査 |
-| （なし） | **必ず**ユーザーに選択を聞く | |
+**引数なし**の場合:
+→ 以下の AskUserQuestion を**即座に実行**する。他のツール呼び出しやテキスト出力より先に実行すること。
 
-**引数がない場合、自分で判断せず必ず AskUserQuestion を実行すること。** 選択肢：
-- feature: 新規機能の追加
-- bugfix: 既存機能の改修・修正
-- investigation: バグ調査・原因分析
+```
+AskUserQuestion:
+  question: "どのテンプレートでplanを作成しますか？"
+  header: "テンプレート"
+  options:
+    - label: "feature"
+      description: "新規機能の追加"
+    - label: "bugfix"
+      description: "既存機能の改修・修正"
+    - label: "investigation"
+      description: "バグ調査・原因分析"
+```
+
+ユーザーの回答を受け取ってからStep 2へ進む。回答を受け取るまで他のStepに進んではならない。
 
 ### Step 2: 日付取得と連番計算
 
