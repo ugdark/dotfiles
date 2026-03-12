@@ -7,8 +7,18 @@
 
 # 作業設定（環境固有・機密）
 .desk
-*.local.*
+
+
+# ローカルログ設定
+.local.logback.xml
+
+# バックアップファイル
+*.bak
 
 # mise（プロジェクト毎のランタイムバージョン指定）
-.mise.toml
-.mise.*.toml
+.mise.local.toml
+.mise.develop.toml
+.mise.stage.toml
+
+# claude
+.claude/settings.local.json
