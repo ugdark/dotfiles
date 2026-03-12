@@ -3,10 +3,21 @@
 ## 1. frontmatter検証
 
 ### 任意フィールド
-- `paths`: Globパターンの配列。ルールの適用スコープを限定する
-  - 例: `["**/test/**"]`, `["modules/**"]`, `["*.ts", "*.tsx"]`
+- `paths`: Globパターンのリスト。ルールの適用スコープを限定する
+  - **フィールド名は必ず `paths`**。`globs`, `glob`, `path` 等は無効（Claude Codeが認識しない）
+  - YAML frontmatterで記述する：
+    ```yaml
+    ---
+    paths:
+      - "src/api/**/*.ts"
+      - "tests/**/*.test.ts"
+    ---
+    ```
+  - 複数パターン・ブレース展開も可: `"src/**/*.{ts,tsx}"`
+  - 参考: https://code.claude.com/docs/en/memory#path-specific-rules
 
 ### pathsチェックポイント
+- **フィールド名が `paths` であること**（`globs` 等の誤記がないか）
 - 汎用ルール（全ファイル共通）なら paths は不要
 - 特定ディレクトリ・ファイル種別に限定すべきルールに paths が設定されているか
 - Globパターンが正しいか（`**` の使い方、拡張子指定）
@@ -44,6 +55,7 @@
 
 ## 4. アンチパターン
 
+- **`globs`や`glob`等の誤ったフィールド名**（正しくは`paths`。誤記するとスコープが効かない）
 - pathsなしで特定ファイル種別にしか適用できないルール
 - 抽象的すぎて実行不能なルール（「良いコードを書く」等）
 - CLAUDE.mdと重複する内容（rulesに書くべきはCLAUDE.mdで管理しきれないスコープ付きルール）
