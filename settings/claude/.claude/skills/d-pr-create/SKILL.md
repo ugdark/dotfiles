@@ -37,12 +37,13 @@ Claudeは以下の状況で**自動的にこのスキルを適用**する：
 
 ### Step 2: PRテンプレートを探す
 
-以下の順序でテンプレートファイルを探す：
+Glob: `**/pull_request_template.md` でリポジトリ内の全テンプレートを一括検索する（大文字小文字を区別しない）。
 
-1. Glob: `.github/pull_request_template.md`（大文字小文字バリエーション含む）
-2. Glob: `.github/PULL_REQUEST_TEMPLATE.md`
-3. Glob: `docs/pull_request_template.md`
-4. Glob: `pull_request_template.md`（リポジトリルート）
+複数見つかった場合は、GitHub公式の優先度順で最初の1つを使用する：
+
+1. `.github/pull_request_template.md` — 最優先
+2. `pull_request_template.md` — リポジトリルート
+3. `docs/pull_request_template.md` — docsディレクトリ
 
 **見つかった場合**: Read でテンプレートを読み込む。
 **見つからなかった場合**: デフォルト構造を使用する（Step 3参照）。
