@@ -52,10 +52,6 @@ skill-name/
 - references/に移すべき内容がSKILL.mdにないか
 - テンプレートはtemplates/に分離されているか
 - SKILL.mdからreferences/への参照（Read指示）が明確か
-- **rulesに切り出すべき内容がSKILL.mdに混在していないか**
-  - 「〜する」「〜しない」等の宣言的なガイドライン → `.claude/rules/` に分離すべき
-  - 特定パス配下にのみ適用される制約 → paths付きruleとして独立させる
-  - 手順・ワークフローはSKILL.md、ガイドライン・制約はruleという判断基準
 
 ## 4. アンチパターン
 
@@ -65,5 +61,3 @@ skill-name/
 - 重要なトリガーフレーズの欠落
 - 言語・フレームワーク固有のハードコード（汎用性の欠如）
 - examples/references/が有効なのに未使用
-- **宣言的ガイドラインがSKILL.mdに埋もれている**（rulesに切り出すべき）
-  - 例: リンクの書き方ルール、命名規約、禁止事項 → `.claude/rules/` に独立させる
