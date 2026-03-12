@@ -1,6 +1,6 @@
 ---
 name: d-guide-knowledges
-description: "ナレッジ記述ガイド - knowledge-baseのmd形式を統一"
+description: "ナレッジ記述ガイド - knowledge-baseのmd形式を統一。「ナレッジを書いて」「ナレッジを追加して」と言われた時や、knowledge-base配下のmd編集時に使用する。"
 user-invocable: true
 disable-model-invocation: false
 allowed-tools: Read, Write, Edit, Glob

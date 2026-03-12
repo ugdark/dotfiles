@@ -1,6 +1,6 @@
 ---
 name: d-plan-resume
-description: "作業再開 - active planの進捗確認と次タスクの提案"
+description: "作業再開 - active planの進捗確認と次タスクの提案。「作業を再開したい」「続きをやりたい」と言われた時に使用する。"
 user-invocable: true
 disable-model-invocation: false
 allowed-tools: Read, Glob, AskUserQuestion

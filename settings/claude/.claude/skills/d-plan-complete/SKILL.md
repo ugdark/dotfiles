@@ -1,6 +1,6 @@
 ---
 name: d-plan-complete
-description: "Plan完了 - チェックボックス確認後、planをcompletedへアーカイブ"
+description: "Plan完了 - チェックボックス確認後、planをcompletedへアーカイブ。「plan完了」「planを完了させて」「アーカイブして」と言われた時に使用する。"
 user-invocable: true
 disable-model-invocation: false
 allowed-tools: Read, Bash, Glob

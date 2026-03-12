@@ -1,6 +1,6 @@
 ---
 name: d-plan-implement
-description: "Planのチェックボックスを1つずつ実装 - 実装→ユーザー確認→plan更新の順序厳守"
+description: "Planのチェックボックスを1つずつ実装 - 実装→ユーザー確認→plan更新の順序厳守。「次のタスクに進んで」「このチェックボックスを実装して」と言われた時に使用する。"
 user-invocable: true
 disable-model-invocation: false
 allowed-tools: Read, Edit, Write, Bash, Glob, Grep

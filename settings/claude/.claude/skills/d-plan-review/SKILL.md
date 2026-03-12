@@ -1,6 +1,6 @@
 ---
 name: d-plan-review
-description: "Plan確認 - 要望を分析しタスク分解・概要・完了条件を自動記載"
+description: "Plan確認 - 要望を分析しタスク分解・概要・完了条件を自動記載。「plan確認して」「planを整理して」と言われた時に使用する。"
 user-invocable: true
 disable-model-invocation: false
 allowed-tools: Read, Edit, Bash, Glob
@@ -49,8 +49,8 @@ Claudeは以下の状況で**自動的にこのスキルを適用**する：
 
 - テンプレートがbugfixまたはfeatureの場合のみ実施
 - Edit: `## ブランチ名` セクションに記載
-  - bugfix → `fix/簡潔な英語名`（例: `fix/tool-image-api-error`）
-  - feature → `feature/簡潔な英語名`（例: `feature/tool-list-url`）
+  - bugfix → `fix/nishiyama/簡潔な英語名`（例: `fix/nishiyama/tool-image-api-error`）
+  - feature → `feature/nishiyama/簡潔な英語名`（例: `feature/nishiyama/tool-list-url`）
 - investigationの場合はスキップ
 
 ### Step 5: 概要セクションの記載
