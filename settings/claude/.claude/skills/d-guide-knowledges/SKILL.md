@@ -93,6 +93,7 @@ updated: 2026-02-12
 | authentication | authentication/ | 認証技術 |
 | scrum | scrum/ | スクラム |
 | development | development/ | 開発手法・ツール |
+| go-lang | go-lang/ | Go言語 |
 | claude-code | claude-code/ | Claude Code |
 | devops | devops/ | DevOps |
 
