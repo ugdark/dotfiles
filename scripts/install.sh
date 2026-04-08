@@ -62,20 +62,16 @@ else
   echo "   [ok] autoupdate without sudo (formulaのみ確実)"
 fi
 
-# StartInterval(間隔) → StartCalendarInterval(9:00, 12:00, 15:00) に変更
+# StartInterval(間隔) → StartCalendarInterval(15:00) に変更
 if [ -f "${AUTOUPDATE_PLIST}" ]; then
   launchctl unload "${AUTOUPDATE_PLIST}" 2>/dev/null || true
   plutil -remove StartInterval "${AUTOUPDATE_PLIST}" 2>/dev/null || true
   plutil -remove StartCalendarInterval "${AUTOUPDATE_PLIST}" 2>/dev/null || true
   plutil -insert StartCalendarInterval -xml \
-    '<array>
-      <dict><key>Hour</key><integer>9</integer><key>Minute</key><integer>0</integer></dict>
-      <dict><key>Hour</key><integer>12</integer><key>Minute</key><integer>0</integer></dict>
-      <dict><key>Hour</key><integer>15</integer><key>Minute</key><integer>0</integer></dict>
-    </array>' \
+    '<dict><key>Hour</key><integer>15</integer><key>Minute</key><integer>0</integer></dict>' \
     "${AUTOUPDATE_PLIST}" 2>/dev/null || true
   launchctl load "${AUTOUPDATE_PLIST}"
-  echo "   [ok] schedule: 9:00, 12:00, 15:00"
+  echo "   [ok] schedule: 15:00"
 fi
 
 echo "==> Setup complete!"
