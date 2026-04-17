@@ -75,7 +75,7 @@ brew "mkcert"                 # ローカルSSL証明書
 # AI
 # ============================================================
 cask "claude"                 # Claude デスクトップアプリ
-cask "claude-code"            # Claude Code CLI
+# Claude Code CLI は native installer で管理（install.sh参照）
 
 # ============================================================
 # ブラウザ

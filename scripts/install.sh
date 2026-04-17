@@ -39,10 +39,19 @@ for pkg in "${STOW_PACKAGES[@]}"; do
   fi
 done
 
-# 5. macOS システム設定
+# 5. Claude Code CLI（native installer / 自動更新あり）
+echo "==> Installing Claude Code CLI..."
+if command -v claude &>/dev/null; then
+  echo "   [ok] Claude Code already installed."
+else
+  curl -fsSL https://claude.ai/install.sh | bash
+  echo "   [ok] Claude Code installed."
+fi
+
+# 6. macOS システム設定
 bash "${DOTFILES_DIR}/scripts/macos.sh"
 
-# 6. Homebrew 自動更新（毎朝7:00、Cask含む、sudo対応）
+# 7. Homebrew 自動更新（15:00、Cask含む、sudo対応）
 # 前提: Brewfile で pinentry-mac がインストール済み
 AUTOUPDATE_PLIST="$HOME/Library/LaunchAgents/com.github.domt4.homebrew-autoupdate.plist"
 echo "==> Setting up brew autoupdate..."
