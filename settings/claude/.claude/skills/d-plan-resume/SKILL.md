@@ -3,7 +3,7 @@ name: d-plan-resume
 description: "作業再開 - active planの進捗確認と次タスクの提案。「作業を再開したい」「続きをやりたい」と言われた時に使用する。"
 user-invocable: true
 disable-model-invocation: false
-allowed-tools: Read, Glob, AskUserQuestion
+allowed-tools: Read, Edit, Glob, AskUserQuestion
 ---
 
 # 作業の再開
@@ -22,7 +22,7 @@ Claudeは以下の状況で**自動的にこのスキルを適用**する：
 
 ### Step 1: plan確認
 
-- Glob: `~/.dotfiles/desk/plans/active/*.md` でactive planを取得
+- Glob: `~/.dotfiles/vault/plans/active/*.md` でactive planを取得
 - **1件のみの場合**: 自動的にそのplanを選択（ユーザーに聞かない）
 - **2件以上の場合**: AskUserQuestion で一覧を表示し、ユーザーに選択を聞く
 
@@ -77,3 +77,17 @@ Claudeは以下の状況で**自動的にこのスキルを適用**する：
 - 「次に進む」 → `/d-plan-implement` フローを開始
 - 「別のタスク」 → 指定タスクで実装を開始
 - 「一旦停止」 → 停止して待機
+
+## やり取り履歴の追記（必須）
+
+このスキル実行中の **質問・回答・方針判断** は、planファイル末尾の `## やり取り履歴` セクションの **最終行に逐次追記** する。
+
+- 追記先: `## やり取り履歴` セクション末尾（既存記述の下に追加）
+- フォーマット例:
+  ```markdown
+  ### YYYY-MM-DD HH:mm （d-plan-resume）
+  - 再開状況: [完了数]/[全体数]
+  - 次タスク: 〜
+  - メモ: 〜
+  ```
+- セクションが存在しない場合のみ、ファイル末尾に新規作成して追加する

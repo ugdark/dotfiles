@@ -1,10 +1,10 @@
 {
   "_doc": "Claude Code グローバル設定（全プロジェクト共通）",
   "language": "japanese",
-  "_doc_effortLevel": "思考の深さ（low/medium/high）",
-  "effortLevel": "high",
+  "_doc_effortLevel": "思考の深さ（low/medium/high）highで長考が見られたので",
+  "effortLevel": "medium",
   "_doc_showThinkingSummaries": "思考プロセスの要約を表示する",
-  "showThinkingSummaries": true,
+  "showThinkingSummaries": false,
   "_doc_priority": "この設定はプロジェクトの .claude/settings.json や settings.local.json で上書き可能",
   "_doc_pattern": "ツール名(パターン) の形式。* はワイルドカード",
   "_doc_permissions": "allow: 確認なしで実行を許可, deny: 実行を拒否",

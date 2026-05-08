@@ -48,9 +48,9 @@ AskUserQuestion:
 
 1. 今日の日付を取得（yyyyMMdd形式）
 2. active planの確認
-   - Glob: `~/.dotfiles/desk/plans/active/yyyyMMdd_*.md`
+   - Glob: `~/.dotfiles/vault/plans/active/yyyyMMdd_*.md`
 3. completed planの確認
-   - Glob: `~/.dotfiles/desk/plans/completed/yyyyMMdd_*.md`
+   - Glob: `~/.dotfiles/vault/plans/completed/yyyyMMdd_*.md`
 4. 両方の連番を統合し、最大値 + 1 を次の連番とする
 
 ### Step 3: テンプレート読み込みとファイル作成
@@ -58,7 +58,7 @@ AskUserQuestion:
 1. テンプレートを読み込む
    - Read: このスキルの `templates/{種別}.md`
 2. 新規planファイルを作成
-   - Write: `~/.dotfiles/desk/plans/active/yyyyMMdd_NN_仮機能名_plan.md`
+   - Write: `~/.dotfiles/vault/plans/active/yyyyMMdd_NN_仮機能名_plan.md`
    - テンプレートの内容をそのまま書き込む
 
 ### Step 4: 完了報告
@@ -71,4 +71,5 @@ AskUserQuestion:
 
 - activeとcompletedの**両方**を確認して連番の重複を防ぐ
 - テンプレート内容はそのまま書き込む（編集しない）
-- planファイル保存先: `~/.dotfiles/desk/plans/`
+- planファイル保存先: `~/.dotfiles/vault/plans/`
+- テンプレートには末尾に `## やり取り履歴` セクションが含まれる。**d-plan-* 系スキル実行中の質問・回答・議論で出た判断は、このセクションの末尾に時系列で逐次追記する**（先頭に挿入しない／本体セクションの編集とは別に追記のみ）
