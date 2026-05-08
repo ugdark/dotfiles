@@ -43,9 +43,11 @@ bash ~/.dotfiles/scripts/install.sh
 │   ├── install.sh         # メインエントリ（brew.sh → OMZ → stow → macos.sh → autoupdate）
 │   ├── brew.sh            # Xcode CLT + Homebrew + brew bundle
 │   └── macos.sh           # macOSシステム設定（defaults write）
-├── desk/                  # ローカル専用（gitignore対象）
+├── vault/                 # ローカル専用（gitignore対象 / 別repo: ugdark/dovault, private）
 │   ├── plans/             # 作業計画
-│   └── knowledge-base/    # ナレッジベース（git clone ugdark/knowledge-base）
+│   ├── daily/, weekly/    # Obsidianノート
+│   ├── .obsidian/         # Obsidian設定
+│   └── knowledge-base/    # ナレッジベース（submodule: ugdark/knowledge-base, public）
 ├── Brewfile               # Homebrewパッケージ一覧
 ├── .gitignore
 ├── CLAUDE.md              # Claude Code用プロジェクト設定
@@ -92,26 +94,30 @@ brew bundle cleanup --file=~/.dotfiles/Brewfile --force
 
 ## プロジェクトでのplan利用
 
-各プロジェクトで `dotdesk` を実行すると、dotfilesの `desk/`（plans, knowledge-base）へのシンボリックリンクが作成されます。
+各プロジェクトで `dotdesk` を実行すると、dotfilesの `vault/`（plans, knowledge-base等）へのシンボリックリンクが作成されます。
 
 ```bash
 cd ~/Works/my-project
-dotdesk    # .desk → ~/.dotfiles/desk/ のシンボリックリンクを作成
+dotdesk    # .desk → ~/.dotfiles/vault/ のシンボリックリンクを作成
 ```
 
 `.desk/` は `.gitignore_global` で無視されるため、プロジェクト側の git に影響しません。
 
-## desk/ のセットアップ
+## vault/ のセットアップ
 
-`desk/` はgitignore対象のため、外部リポジトリは手動でcloneが必要です。
+`vault/` はdotfilesから見るとgitignore対象で、別repoとして管理しています（`ugdark/dovault`, private）。
+内部の `knowledge-base/` はさらにsubmoduleとして `ugdark/knowledge-base`（public）を参照します。
 
 ```bash
-# ナレッジベース
-gh repo clone ugdark/knowledge-base ~/.dotfiles/desk/knowledge-base
+# vault本体（knowledge-baseを含めて再帰clone）
+git clone --recurse-submodules git@github.com:ugdark/dovault.git ~/.dotfiles/vault
+
+# 既にcloneしてから submoduleを取得し直す場合
+cd ~/.dotfiles/vault && git submodule update --init --recursive
 ```
 
-**なぜ desk/ に直接 clone するのか：**
-- desk/ 配下なら Claude Code のグローバル権限（`~/.dotfiles/**`）でカバーされる
+**なぜ vault/ を ~/.dotfiles 配下に置くのか：**
+- vault配下なら Claude Code のグローバル権限（`~/.dotfiles/**`）でカバーされる
 - 外部パスへのシンボリックリンクだと、プロジェクトごとに書き込み承認が必要になる
 - settings.json にローカル固有のパスを書かずに済む（dotfiles は public リポジトリ）
 

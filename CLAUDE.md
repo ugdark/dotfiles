@@ -41,9 +41,11 @@ bash ~/.dotfiles/scripts/install.sh
 │   ├── install.sh         # メインエントリ（brew.sh → stow → macos.sh → autoupdate）
 │   ├── brew.sh            # Xcode CLT + Homebrew + brew bundle
 │   └── macos.sh           # macOSシステム設定（defaults write）
-├── desk/                 # ローカル専用（gitignore対象）
+├── vault/                 # ローカル専用（gitignore対象 / 別repo: ugdark/dovault, private）
 │   ├── plans/             # 個人plan管理
-│   └── knowledge-base/    # ナレッジベース（git clone ugdark/knowledge-base）
+│   ├── daily/, weekly/    # Obsidianノート
+│   ├── .obsidian/         # Obsidian設定（vault repo に含める）
+│   └── knowledge-base/    # ナレッジベース（vault配下のsubmodule: ugdark/knowledge-base, public）
 ├── Brewfile               # Homebrewパッケージ一覧
 ├── .gitignore
 ├── CLAUDE.md
