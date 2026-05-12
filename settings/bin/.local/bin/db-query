@@ -1,0 +1,242 @@
+#!/usr/bin/env bash
+# db-query: Sequel Ace の Favorites.plist + Keychain を流用して MySQL に接続するラッパー
+#
+# 設計方針:
+#   - 接続情報は Sequel Ace の Favorites.plist から取得（外部に二重定義しない）
+#   - パスワードは macOS Keychain から取得（dotfiles repo に秘密を一切持たない）
+#   - 接続名が "dev(" / "stage(" で始まる場合は SELECT/SHOW 系のみ許可
+#       → 書き込み・DDL は --force でも許可しない（恒久 read-only）
+#   - mysql コマンドへは --defaults-extra-file 経由でパスを渡す
+#       → ps から見えない、tempfile は trap で確実に削除
+
+set -euo pipefail
+
+FAV_PLIST="$HOME/Library/Containers/com.sequel-ace.sequel-ace/Data/Library/Application Support/Sequel Ace/Data/Favorites.plist"
+
+# Homebrew の mysql-client は keg-only で PATH に入らないため、
+# 非対話シェル（Claude Code等）でも見つけられるよう自動解決する
+if ! command -v mysql >/dev/null 2>&1; then
+  for _prefix in /opt/homebrew/opt/mysql-client/bin /usr/local/opt/mysql-client/bin; do
+    if [[ -x "$_prefix/mysql" ]]; then
+      PATH="$_prefix:$PATH"
+      break
+    fi
+  done
+  unset _prefix
+fi
+
+usage() {
+  cat <<'EOF'
+Usage:
+  db-query --list                          List all connections (TSV: name host port user database)
+  db-query -c <name> -e "<SQL>"            Execute SQL on the named connection
+  db-query -c <name> < query.sql           Execute SQL from stdin
+  db-query -c <name> --info                Show connection details (no password)
+  db-query -h | --help                     Show this help
+
+Options:
+  -c, --connection <name>   Connection name (exact, then partial match)
+  -e, --execute <sql>       SQL to execute
+  --list                    List all connections
+  --info                    Show connection metadata only
+  --no-table                Plain output (no -t)
+
+Write policy:
+  Connections whose name starts with "dev(" or "stage(" are PERMANENTLY READ-ONLY.
+  Any INSERT/UPDATE/DELETE/REPLACE/DROP/TRUNCATE/ALTER/CREATE/RENAME/GRANT/REVOKE/CALL/LOAD
+  statement will be rejected with exit code 2.
+
+EOF
+}
+
+err() { echo "ERROR: $*" >&2; }
+
+require_plist() {
+  [[ -f "$FAV_PLIST" ]] || { err "Sequel Ace Favorites.plist not found: $FAV_PLIST"; exit 1; }
+}
+
+# plist を JSON に変換して jq で扱う
+plist_json() {
+  plutil -convert json -o - "$FAV_PLIST"
+}
+
+# 全接続レコードを出力。フィールド区切りは US (\x1f, unit separator)。
+# bash の `read` がタブ等のwhitespaceで空フィールドを潰す挙動を回避するため、
+# 非whitespaceの制御文字を使う。
+# レコード順: name, host, port, user, database, id
+SEP=$'\x1f'
+list_connections_records() {
+  plist_json | jq -r --arg sep "$SEP" '
+    [..
+      | objects
+      | select(has("name") and has("host") and has("user"))
+    ]
+    | .[]
+    | [.name, .host, (.port // ""), .user, (.database // ""), (.id|tostring)]
+    | join($sep)
+  '
+}
+
+# 接続名検索（完全一致 → 部分一致）。複数該当時はエラー
+find_connection() {
+  local query="$1"
+  local all matches count
+  all=$(list_connections_records)
+  matches=$(awk -F"$SEP" -v q="$query" '$1 == q' <<<"$all")
+  if [[ -z "$matches" ]]; then
+    matches=$(awk -F"$SEP" -v q="$query" 'index($1, q) > 0' <<<"$all")
+  fi
+  count=$(grep -c '.' <<<"$matches" || true)
+  if [[ "$count" -eq 0 ]]; then
+    err "No connection matching '$query'"
+    echo "Available:" >&2
+    awk -F"$SEP" '{print "  " $1}' <<<"$all" >&2
+    return 1
+  elif [[ "$count" -gt 1 ]]; then
+    err "Multiple connections match '$query':"
+    awk -F"$SEP" '{print "  " $1}' <<<"$matches" >&2
+    return 1
+  fi
+  echo "$matches"
+}
+
+is_readonly_connection() {
+  local name="$1"
+  [[ "$name" == "dev("* ]] || [[ "$name" == "stage("* ]]
+}
+
+# SQL がすべて read-only 文か判定。1文でも書き込み/DDLが混ざれば false (return 1)
+check_readonly_sql() {
+  local sql="$1"
+  # ブロックコメント除去
+  sql=$(perl -0777 -pe 's:/\*.*?\*/::gs' <<<"$sql")
+  # 行コメント除去 → 改行で結合 → ; で分割
+  local cleaned
+  cleaned=$(sed -E 's/--.*$//; s/#.*$//' <<<"$sql" | tr '\n' ' ')
+  local IFS=';'
+  for stmt in $cleaned; do
+    stmt=$(sed -E 's/^[[:space:]]+//; s/[[:space:]]+$//' <<<"$stmt")
+    [[ -z "$stmt" ]] && continue
+    local first
+    first=$(awk '{print toupper($1)}' <<<"$stmt")
+    case "$first" in
+      SELECT|SHOW|DESCRIBE|DESC|EXPLAIN|USE|SET|HELP|WITH) ;;
+      *) return 1 ;;
+    esac
+  done
+  return 0
+}
+
+get_password() {
+  local name="$1" id="$2"
+  security find-generic-password -s "Sequel Ace : ${name} (${id})" -w 2>/dev/null
+}
+
+run_mysql() {
+  local host="$1" port="$2" user="$3" pass="$4" db="$5" sql="$6" table_fmt="$7"
+  local tmpcnf
+  tmpcnf=$(mktemp)
+  # 安全のため即 chmod
+  chmod 600 "$tmpcnf"
+  # 関数を抜けたら削除
+  trap "rm -f '$tmpcnf'" RETURN
+  {
+    echo "[client]"
+    echo "host=${host}"
+    [[ -n "$port" ]] && echo "port=${port}"
+    echo "user=${user}"
+    echo "password=${pass}"
+  } >"$tmpcnf"
+
+  local args=(--defaults-extra-file="$tmpcnf" --default-character-set=utf8mb4)
+  [[ "$table_fmt" == "1" ]] && args+=(-t)
+  [[ -n "$db" ]] && args+=("$db")
+
+  if [[ -n "$sql" ]]; then
+    mysql "${args[@]}" -e "$sql"
+  else
+    mysql "${args[@]}"
+  fi
+}
+
+# ---- 引数パース ----
+ACTION=""
+CONN=""
+SQL=""
+TABLE_FMT=1
+while [[ $# -gt 0 ]]; do
+  case "$1" in
+    -h|--help)        usage; exit 0;;
+    --list)           ACTION="list"; shift;;
+    --info)           ACTION="info"; shift;;
+    -c|--connection)  CONN="$2"; shift 2;;
+    -e|--execute)     SQL="$2"; shift 2;;
+    --no-table)       TABLE_FMT=0; shift;;
+    *) err "Unknown option: $1"; usage; exit 1;;
+  esac
+done
+
+require_plist
+
+# ---- list ----
+if [[ "$ACTION" == "list" ]]; then
+  list_connections_records | awk -F"$SEP" '
+    BEGIN { printf "%-30s %-15s %-9s %-15s %s\n", "NAME", "HOST", "PORT", "USER", "DATABASE" }
+    {
+      port = ($3 == "" ? "(default)" : $3)
+      printf "%-30s %-15s %-9s %-15s %s\n", $1, $2, port, $4, $5
+    }
+  '
+  exit 0
+fi
+
+# 以降は接続名必須
+[[ -z "$CONN" ]] && { err "Connection name required (-c <name>)"; usage; exit 1; }
+
+CONN_RECORD=$(find_connection "$CONN")
+IFS="$SEP" read -r C_NAME C_HOST C_PORT C_USER C_DB C_ID <<<"$CONN_RECORD"
+
+# ---- info ----
+if [[ "$ACTION" == "info" ]]; then
+  echo "name:     $C_NAME"
+  echo "host:     $C_HOST"
+  echo "port:     ${C_PORT:-(default 3306)}"
+  echo "user:     $C_USER"
+  echo "database: $C_DB"
+  if is_readonly_connection "$C_NAME"; then
+    echo "policy:   READ-ONLY (dev/stage protected)"
+  else
+    echo "policy:   read/write allowed"
+  fi
+  exit 0
+fi
+
+# ---- SQL 実行 ----
+# SQLが指定されてない場合は stdin から読む（対話TTYのままはmysql対話モードへ）
+if [[ -z "$SQL" ]] && [[ ! -t 0 ]]; then
+  SQL=$(cat)
+fi
+
+# read-only ガード
+if is_readonly_connection "$C_NAME"; then
+  if [[ -n "$SQL" ]]; then
+    if ! check_readonly_sql "$SQL"; then
+      err "Connection '$C_NAME' is READ-ONLY. Write/DDL statements are not allowed."
+      exit 2
+    fi
+  else
+    err "Interactive shell on '$C_NAME' is not allowed (READ-ONLY connection)."
+    err "Use -e \"<SELECT ...>\" instead."
+    exit 2
+  fi
+fi
+
+# パスワード取得
+PASS=$(get_password "$C_NAME" "$C_ID" || true)
+if [[ -z "$PASS" ]]; then
+  err "Password not found in Keychain for: Sequel Ace : $C_NAME ($C_ID)"
+  err "Open Sequel Ace, connect to '$C_NAME' once to save the password, then retry."
+  exit 1
+fi
+
+run_mysql "$C_HOST" "$C_PORT" "$C_USER" "$PASS" "$C_DB" "$SQL" "$TABLE_FMT"

@@ -49,6 +49,7 @@ brew "protobuf"               # Protocol Buffers コンパイラ
 # データベース
 # ============================================================
 brew "tbls"                   # DB ドキュメント生成
+brew "mysql-client"           # mysql CLI（サーバー mysqld は含まない、db-query/Sequel Ace連携用）
 cask "sequel-ace"             # MySQL GUIクライアント
 
 # ============================================================

@@ -27,6 +27,10 @@ bash ~/.dotfiles/scripts/install.sh
 │   │   └── .gitignore_global
 │   ├── editorconfig/
 │   │   └── .editorconfig
+│   ├── mysql/
+│   │   └── .my.cnf        # mysql CLI 共通設定（接続情報は含まない）
+│   ├── bin/.local/bin/    # ~/.local/bin に配置するユーザースクリプト
+│   │   └── db-query       # Sequel Ace連携 MySQL ラッパー（d-sql skill用）
 │   └── claude/.claude/
 │       ├── settings.json
 │       └── skills/        # Claude Code用スキル定義（d-* prefix）
@@ -36,7 +40,8 @@ bash ~/.dotfiles/scripts/install.sh
 │           ├── d-plan-review/ # Plan確認
 │           ├── d-plan-implement/ # Plan実装
 │           ├── d-plan-complete/  # Plan完了
-│           └── d-plan-resume/    # 作業再開
+│           ├── d-plan-resume/    # 作業再開
+│           └── d-sql/            # SQL実行（Sequel Ace連携）
 ├── scripts/               # セットアップスクリプト
 │   ├── install.sh         # メインエントリ（brew.sh → stow → macos.sh → autoupdate）
 │   ├── brew.sh            # Xcode CLT + Homebrew + brew bundle

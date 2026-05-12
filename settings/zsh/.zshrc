@@ -18,6 +18,12 @@ export LANG=ja_JP.UTF-8
 # パス変数
 # ------------------------------------------------------------------------
 export PATH="$HOME/.local/bin:$PATH"
+# mysql-client は keg-only（macOS標準のmysqlとの衝突回避のため自動でPATHに入らない）
+# Apple Silicon: /opt/homebrew/opt, Intel: /usr/local/opt
+for _prefix in /opt/homebrew/opt/mysql-client /usr/local/opt/mysql-client; do
+  [[ -d "$_prefix/bin" ]] && export PATH="$_prefix/bin:$PATH" && break
+done
+unset _prefix
 DOT=$HOME/.dotfiles
 # ------------------------------------------------------------------------
 # エイリアス

@@ -19,6 +19,9 @@
 .mise.local.toml
 .mise.develop.toml
 .mise.stage.toml
+mise.local.toml
+mise.develop.toml
+mise.stage.toml
 
 # claude
 .claude/settings.local.json

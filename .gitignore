@@ -9,6 +9,9 @@
 
 # 会社/環境固有の設定
 *.local
+# 例外: stowで ~/.local/bin/ にリンクするスクリプト群
+!settings/bin/.local/
+!settings/bin/.local/**
 
 # ローカル専用（plans, knowledges, links等）
 vault/
