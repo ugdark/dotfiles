@@ -41,7 +41,8 @@ bash ~/.dotfiles/scripts/install.sh
 │           ├── d-plan-implement/ # Plan実装
 │           ├── d-plan-complete/  # Plan完了
 │           ├── d-plan-resume/    # 作業再開
-│           └── d-sql/            # SQL実行（Sequel Ace連携）
+│           ├── d-sql/            # SQL実行（Sequel Ace連携）
+│           └── d-daily-start/    # daily日報の自動準備（MCP Google Calendar連携）
 ├── scripts/               # セットアップスクリプト
 │   ├── install.sh         # メインエントリ（brew.sh → stow → macos.sh → autoupdate）
 │   ├── brew.sh            # Xcode CLT + Homebrew + brew bundle
