@@ -23,5 +23,8 @@ mise.local.toml
 mise.develop.toml
 mise.stage.toml
 
+# HTTPS開発用の証明書（mkcertなどで生成・個人マシンで完結）
+.certificates/
+
 # claude
 .claude/settings.local.json
