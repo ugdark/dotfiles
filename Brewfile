@@ -90,6 +90,7 @@ cask "google-chrome"
 cask "slack"
 cask "zoom"
 cask "discord"
+cask "gather"                 # バーチャルオフィス
 
 # ============================================================
 # IDE / エディタ
