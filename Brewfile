@@ -58,9 +58,11 @@ cask "sequel-ace"             # MySQL GUIクライアント
 brew "circleci"
 
 # ============================================================
-# クラウド
+# クラウド / IaC
 # ============================================================
 cask "google-cloud-sdk"
+tap "hashicorp/tap"
+brew "hashicorp/tap/terraform"  # IaC（BSLライセンス化後はcore tapから外れたためhashicorp/tap経由）
 
 # ============================================================
 # コンテナ
