@@ -1,50 +1,34 @@
 {
-  "_doc": "Claude Code グローバル設定（全プロジェクト共通）",
-  "language": "japanese",
-  "_doc_effortLevel": "思考の深さ（low/medium/high）highで長考が見られたので",
-  "effortLevel": "medium",
-  "_doc_showThinkingSummaries": "思考プロセスの要約を表示する",
-  "showThinkingSummaries": false,
-  "_doc_priority": "この設定はプロジェクトの .claude/settings.json や settings.local.json で上書き可能",
-  "_doc_pattern": "ツール名(パターン) の形式。* はワイルドカード",
-  "_doc_permissions": "allow: 確認なしで実行を許可, deny: 実行を拒否",
+  // Claude Code グローバル設定（全プロジェクト共通）
+  // この設定はプロジェクトの .claude/settings.json や settings.local.json で上書き可能
   "permissions": {
-    "_doc_allow": "全プロジェクトで共通して許可するツール",
+    // allow: 確認なしで実行を許可, deny: 実行を拒否
     "allow": [
-      "_doc_read: 検索・読み取り系は副作用なしのため全プロジェクト許可",
+      // 検索・読み取り系は副作用なしのため全プロジェクト許可
       "WebSearch",
       "WebFetch",
       "Read",
       "Glob",
       "Grep",
-
-      "_doc_bash: 全コマンド許可（危険操作はdenyでブロック）",
+      // 全コマンド許可（危険操作はdenyでブロック）
       "Bash(*)",
-
-      "_doc_skill: スキル実行を確認なしで許可",
+      // スキル実行を確認なしで許可
       "Skill",
-
-      "_doc_write: ~/Works/ と ~/.dotfiles/ への書き込みを許可",
+      // ~/Works/ と ~/.dotfiles/ への書き込みを許可
       "Edit(~/Works/**)",
       "Write(~/Works/**)",
       "Edit(~/.dotfiles/**)",
       "Write(~/.dotfiles/**)",
-
-
-      "_doc_mcp_github: GitHub MCPツール（tokenの権限範囲内で動作）",
+      // GitHub MCPツール（tokenの権限範囲内で動作）
       "mcp__github__*",
-
-      "_doc_ide: IntelliJ IDE統合（Update権限は未解決。公式ドキュメント未整備）施策",
+      // IntelliJ IDE統合（Update権限は未解決。公式ドキュメント未整備）
       "mcp__ide__*"
     ],
-
-    "_doc_deny": "全プロジェクトで禁止するツール（安全のため）",
     "deny": [
-      "_doc_filesystem: ファイル/ディレクトリの破壊的削除",
+      // ファイル/ディレクトリの破壊的削除
       "Bash(rm -rf *)",
       "Bash(sudo *)",
-
-      "_doc_git: 履歴改変・データ消失系",
+      // git 履歴改変・データ消失系
       "Bash(git push --force *)",
       "Bash(git push * --force *)",
       "Bash(git push --force-with-lease *)",
@@ -54,17 +38,23 @@
       "Bash(git branch -D *)",
       "Bash(git stash drop *)",
       "Bash(git stash clear *)",
-
-      "_doc_gh: GitHub上の破壊的操作",
+      // GitHub上の破壊的操作
       "Bash(gh repo delete *)",
       "Bash(gh pr close *)",
       "Bash(gh issue close *)"
-    ]
+    ],
+    "defaultMode": "auto"
   },
-
+  "model": "sonnet",
   "enabledPlugins": {
     "code-review@claude-plugins-official": true,
     "skill-creator@claude-plugins-official": true,
     "hookify@claude-plugins-official": true
-  }
+  },
+  "language": "japanese",
+  // 思考の深さ（low/medium/high）highで長考が見られたので
+  "effortLevel": "medium",
+  // 思考プロセスの要約を表示する
+  "showThinkingSummaries": false,
+  "skipAutoPermissionPrompt": true
 }
