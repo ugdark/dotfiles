@@ -107,3 +107,8 @@ EOF
 - **assigneeは常に付与**: `--assignee @me` を必ず付ける
 - **pushする前の確認は不要**: ドラフトPRなので安全
 - **CLAUDE.mdの指示を優先**: プロジェクトのCLAUDE.mdにreviewer・label等の指定があればそれに従う
+- **個人設定ファイルへの参照を含めない**: PR本文に以下のような個人ローカルにしか存在しないパス・識別子を含めない。レビュアーが追えない情報になるため。
+  - `~/.dotfiles/...`, `.desk/quests/...`, `.desk/roadmap/...` 配下のファイルパス
+  - 個人 quest の識別子（例: `quest:20260527_03`, `20260527_03_xxx_quest.md`）
+  - 個人 vault やローカル note への参照
+  - 代わりに、リポジトリ内に commit 済みのファイル（`docs/...` や issue / Asana チケット URL）のみ参照する

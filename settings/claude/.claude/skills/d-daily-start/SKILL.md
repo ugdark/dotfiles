@@ -46,21 +46,22 @@ Claudeは以下の状況で**自動的にこのスキルを適用**する：
 - 今日のファイルの `## やった事` セクション直下に、抽出した内容を Edit で挿入
   - 既に「やった事」に手入力がある場合は**追記**（先頭挿入。手入力を上書きしない）
 
-### Step 3b: 今日の plan を Obsidianリンクで転記
+### Step 3b: 今日の quest を Obsidianリンクで転記
 
-ファイル名だけ把握できればよい（中身は plan ファイル自体を見ればわかるため、本文抽出はしない）。2系統で対象 plan を集める：
+ファイル名だけ把握できればよい（中身は quest ファイル自体を見ればわかるため、本文抽出はしない）。2系統で対象 quest を集める：
 
-**(A) 今日新規作成された active plan**（ファイル名で判定）
-- Bash: `ls ~/.dotfiles/vault/plans/active/$(date +%Y%m%d)_*_plan.md 2>/dev/null`
+**(A) 今日新規作成された active quest**（ファイル名で判定）
+- Bash: `ls ~/.dotfiles/vault/quests/active/$(date +%Y%m%d)_*_quest.md 2>/dev/null`
 
-**(B) 今日完了させた plan**（更新日で判定）
-- Bash: `find ~/.dotfiles/vault/plans/completed -name '*.md' -newermt "$(date +%Y-%m-%d) 00:00" 2>/dev/null`
+**(B) 今日完了させた quest**（更新日で判定）
+- Bash: `find ~/.dotfiles/vault/quests/completed -name '*.md' -newermt "$(date +%Y-%m-%d) 00:00" 2>/dev/null`
 
 **追記**
 - 各ファイルのbasename（拡張子除去）に対し、Obsidian wiki-link を alias 付きで生成し `## やった事` セクション**先頭**に追記
-  - (A) active: `- [[20260513_01_daily日報自動化_plan|plan: daily日報自動化]]`
-  - (B) completed: `- [[20260501_01_ETL_OnDB切替_plan|plan: ETL_OnDB切替 (completed)]]`
-  - 機能名はファイル名から `yyyyMMdd_NN_` プレフィックスと `_plan` サフィックスを除去して抽出
+  - (A) active: `- [[20260513_01_daily日報自動化_quest|quest: daily日報自動化]]`
+  - (B) completed: `- [[20260501_01_ETL_OnDB切替_quest|quest: ETL_OnDB切替 (completed)]]`
+  - 機能名はファイル名から `yyyyMMdd_NN_` プレフィックスと `_quest` サフィックスを除去して抽出
+- **重複追記しない**: 既に「やった事」セクションに同じファイル名のwiki-link（`[[<basename>_quest|...]]`）が存在する場合はスキップ。再実行時の二重追記を防ぐ
 - Step 3 で挿入した前日「やる事」転記より上に配置する
 - (A)(B)合わせて0件ならスキップ
 
@@ -90,12 +91,12 @@ Claudeは以下の状況で**自動的にこのスキルを適用**する：
 - Step 4 と同様に `list_events` で翌出勤日の予定を取得
 - 今日のファイルの `## 次の日の予定` 見出しを `## 次の日の予定 (YYYY-MM-DD 曜)` に書き換え、本文を予定一覧に置き換える
 
-### Step 6b: 未完了の active plan を末尾追記
+### Step 6b: 未完了の active quest を末尾追記
 
-- Bash: `~/.dotfiles/vault/plans/active/*_plan.md` を列挙
-- 各ファイルに対し `- [ ]` の行があれば「未完了タスクが残る」と判定（全タスク完了 = `[x]` のみの plan は除外）
-- 対象を `## アクティブなplan` セクションの本文に書き換え（マーカーコメントは削除）
-  - 形式: `- [[20260513_01_daily日報自動化_plan|daily日報自動化]]`（機能名のみ。`plan:` プレフィックスは付けない）
+- Bash: `~/.dotfiles/vault/quests/active/*_quest.md` を列挙
+- 各ファイルに対し `- [ ]` の行があれば「未完了タスクが残る」と判定（全タスク完了 = `[x]` のみの quest は除外）
+- 対象を `## アクティブなquest` セクションの本文に書き換え（マーカーコメントは削除）
+  - 形式: `- [[20260513_01_daily日報自動化_quest|daily日報自動化]]`（機能名のみ。`quest:` プレフィックスは付けない）
 - 0件なら本文を空にする（セクション見出しは残す）
 
 ### Step 7: 完了報告
@@ -103,10 +104,10 @@ Claudeは以下の状況で**自動的にこのスキルを適用**する：
 - 報告内容:
   - 用意した daily ファイルパス
   - 前日からの転記: 何件あったか（0件ならスキップした旨）
-  - 今日完了したplanタスク: N件追記（0件ならスキップした旨）
+  - 今日完了したquestタスク: N件追記（0件ならスキップした旨）
   - 今日の予定: N件挿入
   - 翌出勤日: YYYY-MM-DD（曜）/ N件挿入
-  - 未完了 active plan: N件追記
+  - 未完了 active quest: N件追記
   - 祝日スキップが発生した場合は「YYYY-MM-DD は祝日（祝日名）のためスキップ」も併記
 
 ## エラーハンドリング

@@ -19,7 +19,7 @@ Claudeは以下の状況で**自動的にこのスキルを適用**する：
 ## 前提
 
 - 対象 PR は現在チェックアウト中の feature ブランチに紐づく、または PR 番号がユーザーから指定される
-- 対応中の active plan が存在する（`d-plan-create` で作成済）
+- 対応中の active quest が存在する（`d-quest-create` で作成済）
 - `gh` CLI が認証済
 
 ## 対象レビュー
@@ -72,8 +72,8 @@ Claudeは以下の状況で**自動的にこのスキルを適用**する：
 
 ### Step 4: Plan への反映
 
-1. 現在の active plan を Read で読み込み
-   - Glob: `~/.dotfiles/vault/plans/active/*.md`
+1. 現在の active quest を Read で読み込み
+   - Glob: `~/.dotfiles/vault/quests/active/*.md`
    - 不明なら AskUserQuestion で選ばせる
 2. plan ファイル **全体の末尾**（`## やり取り履歴` のさらに後ろ）に新規セクションを追加する
 3. 見出しは `## PR レビュー指摘対応（PR #{PR番号}、外部 N件 / ローカル M件）` 形式
@@ -112,7 +112,7 @@ Claudeは以下の状況で**自動的にこのスキルを適用**する：
 
 ### Step 5: 各指摘の対応（必須停止）
 
-`d-plan-implement` スキルと同じフローで 1 件ずつ進める:
+`d-quest-implement` スキルと同じフローで 1 件ずつ進める:
 
 1. 1 件目の指摘を表示し、対応方針を提示
 2. ユーザー確認 → OK 後に実装
@@ -146,7 +146,7 @@ Claudeは以下の状況で**自動的にこのスキルを適用**する：
 ## 最重要ルール
 
 - **拾い（外部 + ローカル）→ plan 反映 → 対応 → 返答 の順序厳守**
-- **各指摘の対応はユーザーの明示的な OK を受けてから次へ**（`d-plan-implement` と同じ規約）
+- **各指摘の対応はユーザーの明示的な OK を受けてから次へ**（`d-quest-implement` と同じ規約）
 - **対応見送り（不採用）は `[ ] ❌` マーク + `対応見送りの理由` を必ず書く**（メモリ `feedback_keep_rejected_items.md` 準拠、削除せず履歴保持）
 - **却下する場合は plan に「却下」と書く + 理由を返信に含める**
 - **`in_reply_to` を必ず使う**（top-level コメントではなくスレッド内に返信）
@@ -187,5 +187,5 @@ gh api -X POST /repos/{owner}/{repo}/pulls/{PR}/comments \
 ## 参考実装ログ
 
 PR #1614 (step02 Restore) で 6 件の Copilot レビューを拾い、案 A / 案 B 判断を経て対応完了したログ:
-- `~/.dotfiles/vault/plans/active/20260521_01_生徒一括Excel段階PR_plan.md`
+- `~/.dotfiles/vault/quests/active/20260521_01_生徒一括Excel段階PR_quest.md`
 - 「## やり取り履歴」の「2026-05-21 step02 PR #1614 レビュー指摘反映」以降
