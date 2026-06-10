@@ -19,7 +19,7 @@ bash ~/.dotfiles/scripts/install.sh
 - Homebrew のインストール（未インストールの場合）
 - Brewfile に基づくパッケージ一括インストール
 - Oh My Zsh のインストール
-- Stow によるシンボリックリンク作成（zsh, vim, git, editorconfig, claude）
+- Stow によるシンボリックリンク作成（zsh, vim, git, editorconfig, claude, codex）
 - macOS システム設定の適用
 
 ## ディレクトリ構成
@@ -36,9 +36,15 @@ bash ~/.dotfiles/scripts/install.sh
 │   │   └── .gitignore_global
 │   ├── editorconfig/
 │   │   └── .editorconfig
-│   └── claude/.claude/
-│       ├── settings.json
-│       └── skills/        # Claude Code用スキル定義（d-* prefix）
+│   ├── claude/.claude/
+│   │   ├── settings.json
+│   │   └── skills/        # Claude Code用スキル定義（d-* prefix）
+│   └── codex/
+│       ├── .codex/
+│       │   ├── AGENTS.md     # Codex用グローバル指示
+│       │   └── config.toml   # Codex用グローバル設定
+│       └── .agents/
+│           └── skills/    # Codex用スキル定義（d-* prefix）
 ├── scripts/               # セットアップスクリプト
 │   ├── install.sh         # メインエントリ（brew.sh → OMZ → stow → macos.sh → autoupdate）
 │   ├── brew.sh            # Xcode CLT + Homebrew + brew bundle
