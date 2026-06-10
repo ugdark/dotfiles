@@ -36,11 +36,16 @@ bash ~/.dotfiles/scripts/install.sh
 │       └── skills/        # Claude Code用スキル定義（d-* prefix）
 │           ├── d-persona/     # 人格切替（ルイズ/ゲンドウ）
 │           ├── d-magi/        # MAGI判定（3並列エージェント分析）
-│           ├── d-plan-create/ # Plan作成
-│           ├── d-plan-review/ # Plan確認
-│           ├── d-plan-implement/ # Plan実装
-│           ├── d-plan-complete/  # Plan完了
-│           ├── d-plan-resume/    # 作業再開
+│           ├── d-plan-create/ # Plan作成（旧称、移行期間中）
+│           ├── d-plan-review/ # Plan確認（旧称、移行期間中）
+│           ├── d-plan-implement/ # Plan実装（旧称、移行期間中）
+│           ├── d-plan-complete/  # Plan完了（旧称、移行期間中）
+│           ├── d-plan-resume/    # 作業再開（旧称、移行期間中）
+│           ├── d-quest-create/ # Quest作成
+│           ├── d-quest-review/ # Quest確認
+│           ├── d-quest-implement/ # Quest実装
+│           ├── d-quest-complete/  # Quest完了
+│           ├── d-quest-resume/    # 作業再開
 │           ├── d-sql/            # SQL実行（Sequel Ace連携）
 │           └── d-daily-start/    # daily日報の自動準備（MCP Google Calendar連携）
 ├── scripts/               # セットアップスクリプト
@@ -48,7 +53,8 @@ bash ~/.dotfiles/scripts/install.sh
 │   ├── brew.sh            # Xcode CLT + Homebrew + brew bundle
 │   └── macos.sh           # macOSシステム設定（defaults write）
 ├── vault/                 # ローカル専用（gitignore対象 / 別repo: ugdark/dovault, private）
-│   ├── plans/             # 個人plan管理
+│   ├── plans/             # 個人quest管理（旧称、移行期間中）
+│   ├── quests/            # 個人quest管理
 │   ├── daily/, weekly/    # Obsidianノート
 │   ├── .obsidian/         # Obsidian設定（vault repo に含める）
 │   └── knowledge-base/    # ナレッジベース（vault配下のsubmodule: ugdark/knowledge-base, public）
@@ -72,4 +78,4 @@ bash ~/.dotfiles/scripts/install.sh
 
 - **プロダクト・言語に依存しない**: 特定のフレームワーク（sbt, npm等）やレイヤー構造（domain/gateway等）をスキル内にハードコードしない
 - **プロジェクト固有の設定はCLAUDE.mdに委任**: フォーマッタ、テストコマンド、レイヤー構成等は各プロジェクトのCLAUDE.mdに記載し、スキルはそれを参照する
-- **テンプレートはシンプルに**: planテンプレートには構造だけ置き、具体的な内容はreview時に埋める
+- **テンプレートはシンプルに**: questテンプレートには構造だけ置き、具体的な内容はreview時に埋める
