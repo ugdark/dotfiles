@@ -29,6 +29,12 @@ bash ~/.dotfiles/scripts/install.sh
 │   │   └── .editorconfig
 │   ├── mysql/
 │   │   └── .my.cnf        # mysql CLI 共通設定（接続情報は含まない）
+│   ├── codex/
+│   │   ├── .codex/
+│   │   │   ├── AGENTS.md     # Codex用グローバル指示
+│   │   │   └── config.toml   # Codex用グローバル設定
+│   │   └── .agents/
+│   │       └── skills/    # Codex用スキル定義（d-* prefix）
 │   ├── bin/.local/bin/    # ~/.local/bin に配置するユーザースクリプト
 │   │   └── db-query       # Sequel Ace連携 MySQL ラッパー（d-sql skill用）
 │   └── claude/.claude/

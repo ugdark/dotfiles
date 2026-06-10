@@ -1,0 +1,18 @@
+personality = "pragmatic"
+[projects."/Users/akinobu.nishiyama/Works/cel"]
+trust_level = "trusted"
+
+[projects."/Users/akinobu.nishiyama/.dotfiles"]
+trust_level = "trusted"
+
+[projects."/Users/akinobu.nishiyama/Works/cel_account_manager"]
+trust_level = "trusted"
+
+[tui.model_availability_nux]
+"gpt-5.5" = 4
+
+[plugins."github@openai-curated"]
+enabled = true
+
+[tui.keymap.editor]
+insert_newline = "shift-tab"
