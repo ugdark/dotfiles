@@ -1,0 +1,61 @@
+---
+name: d-quest-complete
+description: "Quest完了 - チェックボックス確認後、questをcompletedへアーカイブ。「quest完了」「questを完了させて」「アーカイブして」と言われた時に使用する。"
+user-invocable: true
+disable-model-invocation: false
+allowed-tools: Read, Bash, Glob
+---
+
+# Quest完了
+
+questをアーカイブ（active → completed へ移動）する。
+
+## 使用場面
+
+Claudeは以下の状況で**自動的にこのスキルを適用**する：
+
+- 「quest完了」「questを完了させて」「アーカイブして」と言われた時
+
+また、`/d-quest-complete` で手動呼び出しも可能。
+
+## 実行フロー
+
+### Step 1: questファイルの読み込み
+
+- Read: 現在作業中のquest.md
+- 不明な場合は active/ をGlobで確認
+
+### Step 2: チェックボックス確認
+
+- 「## 対応状況」セクションを確認
+- `[x]` の数（完了済み）と `[ ]` の数（未完了）をカウント
+
+**全て完了の場合**: そのままStep 3へ進む（確認不要）
+
+**未完了がある場合**:
+- 警告メッセージを表示
+- 「まだN個のタスクが未完了です：[リスト]。本当に完了しますか？」
+- ユーザー確認を待つ
+- NGなら停止
+
+### Step 3: ファイル移動
+
+- Bash: `mv ~/.dotfiles/vault/quests/active/[ファイル名].md ~/.dotfiles/vault/quests/completed/`
+- ファイル名は変更しない
+
+### Step 4: 完了報告
+
+- 「questをアーカイブしました」
+- 移動先のパスを表示
+
+### Step 5: 次のquest確認
+
+- active/ に他のquestがあるか確認
+  - Glob: `~/.dotfiles/vault/quests/active/*.md`
+- ある場合: 「active/[ファイル名].md がありますが、これに進みますか？」
+- ない場合: 「新しいquestを作成しますか？」
+
+## 重要ルール
+
+- フォーマット（sbt format）やテスト実行は別途ユーザーが実行する前提
+- このスキルは「チェック確認 + ファイル移動」のみ
