@@ -30,6 +30,7 @@ brew "imagemagick"            # 画像処理
 # dotfiles 管理
 # ============================================================
 brew "stow"                   # シンボリックリンク管理
+tap "domt4/autoupdate"        # brew autoupdate コマンド（外部コマンドとして提供）
 brew "pinentry-mac"           # brew autoupdate --sudo 用
 
 # ============================================================
