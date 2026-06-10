@@ -1,34 +1,23 @@
 {
-  // Claude Code グローバル設定（全プロジェクト共通）
-  // この設定はプロジェクトの .claude/settings.json や settings.local.json で上書き可能
   "permissions": {
-    // allow: 確認なしで実行を許可, deny: 実行を拒否
     "allow": [
-      // 検索・読み取り系は副作用なしのため全プロジェクト許可
       "WebSearch",
       "WebFetch",
       "Read",
       "Glob",
       "Grep",
-      // 全コマンド許可（危険操作はdenyでブロック）
       "Bash(*)",
-      // スキル実行を確認なしで許可
       "Skill",
-      // ~/Works/ と ~/.dotfiles/ への書き込みを許可
       "Edit(~/Works/**)",
       "Write(~/Works/**)",
       "Edit(~/.dotfiles/**)",
       "Write(~/.dotfiles/**)",
-      // GitHub MCPツール（tokenの権限範囲内で動作）
       "mcp__github__*",
-      // IntelliJ IDE統合（Update権限は未解決。公式ドキュメント未整備）
       "mcp__ide__*"
     ],
     "deny": [
-      // ファイル/ディレクトリの破壊的削除
       "Bash(rm -rf *)",
       "Bash(sudo *)",
-      // git 履歴改変・データ消失系
       "Bash(git push --force *)",
       "Bash(git push * --force *)",
       "Bash(git push --force-with-lease *)",
@@ -38,7 +27,6 @@
       "Bash(git branch -D *)",
       "Bash(git stash drop *)",
       "Bash(git stash clear *)",
-      // GitHub上の破壊的操作
       "Bash(gh repo delete *)",
       "Bash(gh pr close *)",
       "Bash(gh issue close *)"
@@ -52,9 +40,7 @@
     "hookify@claude-plugins-official": true
   },
   "language": "japanese",
-  // 思考の深さ（low/medium/high）highで長考が見られたので
   "effortLevel": "medium",
-  // 思考プロセスの要約を表示する
   "showThinkingSummaries": false,
   "skipAutoPermissionPrompt": true
 }
