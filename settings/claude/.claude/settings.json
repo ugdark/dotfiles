@@ -33,6 +33,7 @@
     ],
     "defaultMode": "auto"
   },
+  "model": "sonnet[1m]",
   "statusLine": {
     "type": "command",
     "command": "~/.claude/statusline.sh"
@@ -42,9 +43,9 @@
     "skill-creator@claude-plugins-official": true,
     "hookify@claude-plugins-official": true
   },
-  "model": "claude-sonnet-4-6",
   "language": "japanese",
   "effortLevel": "medium",
   "showThinkingSummaries": false,
-  "skipAutoPermissionPrompt": true
+  "skipAutoPermissionPrompt": true,
+  "skipWorkflowUsageWarning": true
 }
