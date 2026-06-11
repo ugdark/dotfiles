@@ -40,3 +40,24 @@ Claude Code グローバル設定（全プロジェクト共通）。
 | `effortLevel` | `"medium"` | 思考の深さ。`high` にすると長考が見られたため medium に |
 | `showThinkingSummaries` | `false` | 思考プロセスの要約を表示しない |
 | `skipAutoPermissionPrompt` | `true` | autoモード起動時の確認ダイアログをスキップ |
+| `statusLine` | コマンド指定 | ターミナル下部にコスト等を常時表示（後述） |
+
+## statusLine
+
+`~/.claude/statusline.sh` を実行してその stdout をステータスラインに表示する。
+
+```json
+"statusLine": {
+  "type": "command",
+  "command": "~/.claude/statusline.sh"
+}
+```
+
+スクリプト（`settings/claude/.claude/statusline.sh`）は以下を表示：
+
+- モデル名
+- コスト（USD→JPY換算、固定レート 160円/ドル）
+- 経過時間
+- コンテキスト使用率
+
+表示例: `[Claude Sonnet 4.6] 💰 ¥2.4 | ⏱️ 5m 12s | ctx: 23%`

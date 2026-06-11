@@ -42,5 +42,9 @@
   "language": "japanese",
   "effortLevel": "medium",
   "showThinkingSummaries": false,
-  "skipAutoPermissionPrompt": true
+  "skipAutoPermissionPrompt": true,
+  "statusLine": {
+    "type": "command",
+    "command": "~/.claude/statusline.sh"
+  }
 }
