@@ -35,12 +35,24 @@ Claude Code グローバル設定（全プロジェクト共通）。
 
 | キー | 値 | 備考 |
 |-----|-----|------|
-| `model` | `"sonnet"` | デフォルトモデル |
+| `model` | `"sonnet[1m]"` | デフォルトモデル（1Mコンテキスト版） |
 | `language` | `"japanese"` | 応答言語 |
 | `effortLevel` | `"medium"` | 思考の深さ。`high` にすると長考が見られたため medium に |
 | `showThinkingSummaries` | `false` | 思考プロセスの要約を表示しない |
 | `skipAutoPermissionPrompt` | `true` | autoモード起動時の確認ダイアログをスキップ |
+| `skipWorkflowUsageWarning` | `true` | Workflow（マルチエージェント）起動時のトークン消費警告をスキップ |
+| `enabledPlugins` | 各プラグインを `true` | `code-review`, `skill-creator`, `hookify` を有効化（後述） |
 | `statusLine` | コマンド指定 | ターミナル下部にコスト等を常時表示（後述） |
+
+## enabledPlugins
+
+Claude Codeの公式プラグイン群。スキルとして `/hookify`, `/code-review` 等で呼び出せる。
+
+| プラグイン | 概要 |
+|-----------|------|
+| `code-review` | PRやdiffのコードレビューを実行 |
+| `skill-creator` | スキルの作成・改善・パフォーマンス評価 |
+| `hookify` | Claudeの振る舞いを制御するhookルールを作成・管理。`.claude/hookify.*.local.md` にルールファイルを置くだけで即時反映される（再起動不要）。会話を分析して問題のある動作を検出・ルール化する `/hookify` と、ルール一覧確認の `/hookify:list`、有効/無効切替の `/hookify:configure` などを提供 |
 
 ## statusLine
 
