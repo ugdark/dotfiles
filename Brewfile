@@ -24,6 +24,7 @@ brew "coreutils"              # GNU coreutils (gdate, gls等)
 brew "findutils"              # GNU findutils (gfind, gxargs等)
 brew "jq"                     # JSON処理
 brew "trash"                  # ゴミ箱に移動する rm 代替
+brew "tmux"                   # ターミナルマルチプレクサ（takt claude-terminal プロバイダーに必要）
 brew "imagemagick"            # 画像処理
 
 # ============================================================
