@@ -33,7 +33,6 @@
     ],
     "defaultMode": "auto"
   },
-  "model": "sonnet[1m]",
   "statusLine": {
     "type": "command",
     "command": "~/.claude/statusline.sh"
@@ -46,6 +45,6 @@
   "language": "japanese",
   "effortLevel": "medium",
   "showThinkingSummaries": false,
-  "skipAutoPermissionPrompt": true,
-  "skipWorkflowUsageWarning": true
+  "skipWorkflowUsageWarning": true,
+  "skipAutoPermissionPrompt": true
 }
