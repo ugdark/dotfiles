@@ -28,7 +28,7 @@ mkdir -p "$HOME/.vimbackup"
 
 # 4. stow でシンボリックリンク作成
 echo "==> Creating symlinks with stow..."
-STOW_PACKAGES=(zsh vim git editorconfig agents claude mysql bin)
+STOW_PACKAGES=(zsh vim git editorconfig agents claude codex mysql bin)
 
 for pkg in "${STOW_PACKAGES[@]}"; do
   if [ -d "${DOTFILES_DIR}/settings/${pkg}" ]; then
