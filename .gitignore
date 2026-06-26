@@ -15,3 +15,6 @@
 
 # ローカル専用（plans, knowledges, links等）
 vault/
+
+# Codex が自動生成するマシン固有の状態（trust_level・NUXフラグ等）
+settings/codex/.codex/config.toml

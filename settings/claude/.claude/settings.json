@@ -46,5 +46,6 @@
   "effortLevel": "medium",
   "showThinkingSummaries": false,
   "skipWorkflowUsageWarning": true,
-  "skipAutoPermissionPrompt": true
+  "skipAutoPermissionPrompt": true,
+  "tui": "fullscreen"
 }
