@@ -39,21 +39,7 @@ bash ~/.dotfiles/scripts/install.sh
 │   │   └── db-query       # Sequel Ace連携 MySQL ラッパー（d-sql skill用）
 │   └── claude/.claude/
 │       ├── settings.json
-│       └── skills/        # Claude Code用スキル定義（d-* prefix）
-│           ├── d-persona/     # 人格切替（ルイズ/ゲンドウ）
-│           ├── d-magi/        # MAGI判定（3並列エージェント分析）
-│           ├── d-plan-create/ # Plan作成（旧称、移行期間中）
-│           ├── d-plan-review/ # Plan確認（旧称、移行期間中）
-│           ├── d-plan-implement/ # Plan実装（旧称、移行期間中）
-│           ├── d-plan-complete/  # Plan完了（旧称、移行期間中）
-│           ├── d-plan-resume/    # 作業再開（旧称、移行期間中）
-│           ├── d-quest-create/ # Quest作成
-│           ├── d-quest-review/ # Quest確認
-│           ├── d-quest-implement/ # Quest実装
-│           ├── d-quest-complete/  # Quest完了
-│           ├── d-quest-resume/    # 作業再開
-│           ├── d-sql/            # SQL実行（Sequel Ace連携）
-│           └── d-daily-start/    # daily日報の自動準備（MCP Google Calendar連携）
+│       └── skills/        # Claude Code用スキル定義（d-* prefix）。個別の一覧・説明は各 skills/*/SKILL.md の description を参照
 ├── scripts/               # セットアップスクリプト
 │   ├── install.sh         # メインエントリ（brew.sh → stow → macos.sh → autoupdate）
 │   ├── brew.sh            # Xcode CLT + Homebrew + brew bundle
