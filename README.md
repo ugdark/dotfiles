@@ -19,7 +19,7 @@ bash ~/.dotfiles/scripts/install.sh
 - Homebrew のインストール（未インストールの場合）
 - Brewfile に基づくパッケージ一括インストール
 - Oh My Zsh のインストール
-- Stow によるシンボリックリンク作成（zsh, vim, git, editorconfig, claude, codex）
+- Stow によるシンボリックリンク作成（zsh, vim, git, editorconfig, agents, claude, codex, mysql, bin）
 - macOS システム設定の適用
 
 ## ディレクトリ構成
@@ -36,29 +36,43 @@ bash ~/.dotfiles/scripts/install.sh
 │   │   └── .gitignore_global
 │   ├── editorconfig/
 │   │   └── .editorconfig
+│   ├── mysql/
+│   │   └── .my.cnf        # mysql CLI 共通設定（接続情報は含まない）
+│   ├── agents/.agents/    # ★実体マスター（Claude/Codex共通）→ ~/.agents/
+│   │   ├── AGENTS.md      # 共通グローバル指示の実体
+│   │   └── skills/        # 全 d-* スキルの実体。個別の説明は各 skills/*/SKILL.md の description を参照
 │   ├── claude/.claude/
+│   │   ├── CLAUDE.md      # Claude用グローバル指示。先頭で @~/.agents/AGENTS.md を import し共通指示を集約
 │   │   ├── settings.json
-│   │   └── skills/        # Claude Code用スキル定義（d-* prefix）
-│   └── codex/
-│       ├── .codex/
-│       │   ├── AGENTS.md     # Codex用グローバル指示
-│       │   └── config.toml   # Codex用グローバル設定
-│       └── .agents/
-│           └── skills/    # Codex用スキル定義（d-* prefix）
+│   │   └── skills/        # → settings/agents/.agents/skills へのsymlink（マスターを参照）
+│   ├── codex/.codex/
+│   │   ├── AGENTS.md      # → settings/agents/.agents/AGENTS.md へのsymlink（~/.codex/AGENTS.md が解決）
+│   │   └── config.toml    # Codex自動生成・gitignore対象（機密混入防止）
+│   └── bin/.local/bin/    # ~/.local/bin に配置するユーザースクリプト
+│       └── db-query       # Sequel Ace連携 MySQL ラッパー（d-sql skill用）
 ├── scripts/               # セットアップスクリプト
 │   ├── install.sh         # メインエントリ（brew.sh → OMZ → stow → macos.sh → autoupdate）
 │   ├── brew.sh            # Xcode CLT + Homebrew + brew bundle
 │   └── macos.sh           # macOSシステム設定（defaults write）
 ├── vault/                 # ローカル専用（gitignore対象 / 別repo: ugdark/dovault, private）
-│   ├── plans/             # 作業計画
+│   ├── quests/            # 個人quest管理
 │   ├── daily/, weekly/    # Obsidianノート
 │   ├── .obsidian/         # Obsidian設定
 │   └── knowledge-base/    # ナレッジベース（submodule: ugdark/knowledge-base, public）
 ├── Brewfile               # Homebrewパッケージ一覧
 ├── .gitignore
-├── CLAUDE.md              # Claude Code用プロジェクト設定
+├── CLAUDE.md              # Claude Code用プロジェクト指示
 └── README.md
 ```
+
+## 設計上のポイント
+
+- **GNU Stow**: `settings/` 配下の各ディレクトリをパッケージとして `$HOME` にシンボリックリンク
+- **環境固有設定の分離**: `*.local` パターン（例: `~/.zshrc.local`）でgitignore。会社設定が混入しない
+- **スクリプトは冪等**: `install.sh` は何度実行しても安全
+- **既存環境との共存**: `stow --adopt` で既存ファイルを取り込み可能
+- **機密ファイル**: SSH鍵等はリポジトリに格納しない
+- **AIエージェント設定の共通化**: 共通指示（AGENTS.md）と全 `d-*` スキルの実体は `settings/agents/.agents/` に一元化。Claude は `~/.claude/CLAUDE.md` の `@~/.agents/AGENTS.md` import と `skills` symlink で、Codex は `~/.codex/AGENTS.md` symlink と `~/.agents/skills` 直読みで、同じマスターを参照（二重管理ゼロ）
 
 ## Stow の使い方
 

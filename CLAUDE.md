@@ -6,67 +6,11 @@
 
 macOS向けの個人dotfilesリポジトリ（owner: ugdark）。GNU Stowでシンボリックリンクを管理し、`git clone` + `install.sh` で環境構築が完了する。
 
-## セットアップコマンド
-
-```bash
-git clone https://github.com/ugdark/dotfiles.git ~/.dotfiles
-bash ~/.dotfiles/scripts/install.sh
-```
-
-## ディレクトリ構成
-
-```
-~/.dotfiles/
-├── settings/              # stow管理対象（stow -d settings -t $HOME）
-│   ├── zsh/
-│   │   └── .zshrc
-│   ├── vim/
-│   │   └── .vimrc
-│   ├── git/
-│   │   ├── .gitconfig
-│   │   └── .gitignore_global
-│   ├── editorconfig/
-│   │   └── .editorconfig
-│   ├── mysql/
-│   │   └── .my.cnf        # mysql CLI 共通設定（接続情報は含まない）
-│   ├── codex/
-│   │   ├── .codex/
-│   │   │   ├── AGENTS.md     # Codex用グローバル指示
-│   │   │   └── config.toml   # Codex用グローバル設定
-│   │   └── .agents/
-│   │       └── skills/    # Codex用スキル定義（d-* prefix）
-│   ├── bin/.local/bin/    # ~/.local/bin に配置するユーザースクリプト
-│   │   └── db-query       # Sequel Ace連携 MySQL ラッパー（d-sql skill用）
-│   └── claude/.claude/
-│       ├── settings.json
-│       └── skills/        # Claude Code用スキル定義（d-* prefix）。個別の一覧・説明は各 skills/*/SKILL.md の description を参照
-├── scripts/               # セットアップスクリプト
-│   ├── install.sh         # メインエントリ（brew.sh → stow → macos.sh → autoupdate）
-│   ├── brew.sh            # Xcode CLT + Homebrew + brew bundle
-│   └── macos.sh           # macOSシステム設定（defaults write）
-├── vault/                 # ローカル専用（gitignore対象 / 別repo: ugdark/dovault, private）
-│   ├── plans/             # 個人quest管理（旧称、移行期間中）
-│   ├── quests/            # 個人quest管理
-│   ├── daily/, weekly/    # Obsidianノート
-│   ├── .obsidian/         # Obsidian設定（vault repo に含める）
-│   └── knowledge-base/    # ナレッジベース（vault配下のsubmodule: ugdark/knowledge-base, public）
-├── Brewfile               # Homebrewパッケージ一覧
-├── .gitignore
-├── CLAUDE.md
-└── README.md
-```
-
-## 設計上のポイント
-
-- **GNU Stow**: `settings/` 配下の各ディレクトリをパッケージとして `$HOME` にシンボリックリンク
-- **環境固有設定の分離**: `*.local` パターン（例: `~/.zshrc.local`）でgitignore。会社設定が混入しない
-- **スクリプトは冪等**: `install.sh` は何度実行しても安全
-- **既存環境との共存**: `stow --adopt` で既存ファイルを取り込み可能
-- **機密ファイル**: SSH鍵等はリポジトリに格納しない
+リポジトリ構成・セットアップ手順・設計上のポイントは [README.md](./README.md) を参照。
 
 ## skills（d-*）の設計方針
 
-`settings/claude/.claude/skills/` 配下のスキルは **汎用的** に作る。
+`settings/agents/.agents/skills/` 配下のスキル（実体マスター。Claude/Codex がsymlinkで共有）は **汎用的** に作る。
 
 - **プロダクト・言語に依存しない**: 特定のフレームワーク（sbt, npm等）やレイヤー構造（domain/gateway等）をスキル内にハードコードしない
 - **プロジェクト固有の設定はCLAUDE.mdに委任**: フォーマッタ、テストコマンド、レイヤー構成等は各プロジェクトのCLAUDE.mdに記載し、スキルはそれを参照する
