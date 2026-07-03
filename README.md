@@ -161,6 +161,19 @@ git config --global --unset core.hooksPath   # ② git層を停止（再開: cor
 # ③ Claude層: settings.json の hooks.PreToolUse を削除 → 次回起動で反映
 ```
 
+### 特定リポジトリをガードから除外する
+
+`core.hooksPath` はグローバル設定なので全リポジトリに効く。個人ノート専用の vault など、
+絶対パスや個人情報が正当に入るリポジトリは、そのrepo内で**ローカル設定で上書き**して除外する
+（ローカル設定はグローバルより優先。新マシンで再clone時は再設定が必要）。
+
+```bash
+cd ~/.dotfiles/vault
+git config --local core.hooksPath .git/hooks   # 自repoの空hooksを使う＝ガード無効化
+```
+
+※ 公開リポジトリ（knowledge-base 等）は漏洩防止のため除外しない。
+
 ## 環境固有の設定
 
 会社やマシン固有の設定は `~/.zshrc.local` に記述してください。
