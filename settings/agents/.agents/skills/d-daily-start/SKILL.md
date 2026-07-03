@@ -9,7 +9,8 @@ argument-hint: ""
 
 # daily日報の自動準備
 
-`~/.dotfiles/vault/daily/YYYY-MM-DD.md` を準備し、前日予定の転記と Google カレンダーからの予定挿入をまとめて行う。
+`~/.dotfiles/vault/daily/YYYY-MM-WWW/YYYY-MM-DD.md` を準備し、前日予定の転記と Google カレンダーからの予定挿入をまとめて行う。
+（daily は週フォルダ `YYYY-MM-WWW`（例 `2026-07-W27`）配下に置く。週番号は **ISO週**＝`date +%V`。Obsidian側フォーマット `YYYY-MM-[W]WW` と一致させる）
 
 ## 使用場面
 
@@ -22,7 +23,7 @@ Claudeは以下の状況で**自動的にこのスキルを適用**する：
 ## 前提
 
 - daily テンプレート: `~/.dotfiles/vault/templates/daily.md`
-- daily 保存先: `~/.dotfiles/vault/daily/YYYY-MM-DD.md`
+- daily 保存先: `~/.dotfiles/vault/daily/YYYY-MM-WWW/YYYY-MM-DD.md`（週フォルダ配下。WWW=`W`+ISO週2桁）
 - カレンダー取得は MCP `claude_ai_Google_Calendar`（事前に `/mcp` で認証済みであること）
 
 ## 実行フロー
@@ -31,16 +32,20 @@ Claudeは以下の状況で**自動的にこのスキルを適用**する：
 
 - Bash: `date +"%Y-%m-%d"` で今日の日付を取得
 - Bash: `LANG=ja_JP.UTF-8 date +"%a"` で曜日を取得（月火水木金土日）
-- 今日のファイルパス: `~/.dotfiles/vault/daily/YYYY-MM-DD.md`
+- Bash: `date +"%Y-%m-W%V"` で週フォルダ名を取得（例 `2026-07-W27`。ISO週）
+- 今日のファイルパス: `~/.dotfiles/vault/daily/<週フォルダ>/YYYY-MM-DD.md`
 
 ### Step 2: 今日の daily ファイル準備
 
 - 既に存在する場合: そのまま使う（**既存内容は破壊しない**）
 - 存在しない場合: テンプレを読み、`{{date:YYYY-MM-DD (ddd)}}` を `YYYY-MM-DD (曜)` に置換して Write
+  - 週フォルダが無ければ Write 前に `mkdir -p ~/.dotfiles/vault/daily/<週フォルダ>` で作成する
 
 ### Step 3: 前日 daily の特定と「やる事」転記
 
-- Bash: `ls ~/.dotfiles/vault/daily/*.md | sort | grep -B 1 "YYYY-MM-DD.md$" | head -1`（今日の1つ前のファイル）
+- Bash: 週フォルダ配下を横断し、**ファイル名（日付）順**で今日の1つ前を取る:
+  `find ~/.dotfiles/vault/daily -name '????-??-??.md' | awk -F/ '{print $NF"\t"$0}' | sort | cut -f2- | grep -B 1 "/YYYY-MM-DD.md$" | head -1`
+  - フルパスではなく basename（日付）でソートするため、週フォルダをまたいでも正しく前日が取れる
   - 該当なしの場合は Step 3 をスキップして Step 3b へ
 - 前日ファイルを Read し、**`## やる事` セクションの本文**を抽出
 - 今日のファイルの `## やった事` セクション直下に、抽出した内容を Edit で挿入
