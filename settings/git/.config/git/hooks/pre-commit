@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+# グローバル git pre-commit フック。
+# core.hooksPath = ~/.config/git/hooks で全リポジトリに適用される
+# （Fork・ターミナル・IDE すべてのcommitに効く）。
+#
+# 検出ロジックは Claude Code hook と共有: ~/.claude/hooks/secret-guard.sh
+# stdin無し（git hookモード）で実行し、秘密/業務情報を検出したら exit 1 で commit をブロックする。
+#
+# 誤検出時の回避: git commit --no-verify（乱用禁物）
+GUARD="$HOME/.claude/hooks/secret-guard.sh"
+[ -x "$GUARD" ] || exit 0   # スクリプトが無い環境では素通り（環境差で壊さない）
+exec "$GUARD" </dev/null
