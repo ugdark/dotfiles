@@ -1,0 +1,24 @@
+# Codex config.toml テンプレート
+#
+# config.toml 本体は gitignore 対象（trust_level にマシン固有の絶対パスが入るため）。
+# 新しいマシンではこのテンプレをコピーして使う:
+#   cp config.toml.example config.toml
+# その後 Codex を起動し、各プロジェクトで trust すると
+# [projects."<絶対パス>"] エントリは Codex が自動追記する。
+#
+# 各キーの詳細は config.toml.md を参照。
+
+model = "gpt-5.5"
+model_reasoning_effort = "xhigh"
+
+# --- 承認まわり（Claude settings.json の defaultMode:"auto" 相当。都度確認をなくす） ---
+approval_policy = "never"        # 一切確認しない（"on-request" にすると危険操作時だけ確認）
+sandbox_mode = "workspace-write" # 作業ディレクトリ内の書き込みは自動許可
+
+[sandbox_workspace_write]
+network_access = true            # git push / gh / curl 等ネットワークを許可
+
+# --- プロジェクト信頼設定（マシン固有・Codexが自動追記するので手書き不要） ---
+# 例（絶対パスはこのテンプレには書かない。Codexが trust 時に生成する）:
+# [projects."/absolute/path/to/your/project"]
+# trust_level = "trusted"
