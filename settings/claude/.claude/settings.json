@@ -40,8 +40,8 @@
         "hooks": [
           {
             "type": "command",
-            "if": "Bash(git commit *)",
             "command": "$HOME/.claude/hooks/secret-guard.sh",
+            "if": "Bash(git commit *)",
             "timeout": 15
           }
         ]
@@ -62,5 +62,6 @@
   "tui": "fullscreen",
   "showThinkingSummaries": false,
   "skipWorkflowUsageWarning": true,
-  "skipAutoPermissionPrompt": true
+  "skipAutoPermissionPrompt": true,
+  "model": "claude-fable-5[1m]"
 }
