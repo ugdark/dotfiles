@@ -11,7 +11,8 @@
       "Edit(~/Works/**)",
       "Edit(~/.dotfiles/**)",
       "mcp__github__*",
-      "mcp__ide__*"
+      "mcp__ide__*",
+      "mcp__chrome-devtools__*"
     ],
     "deny": [
       "Bash(rm -rf *)",
