@@ -7,7 +7,8 @@ eval "$(/opt/homebrew/bin/brew shellenv)"
 # ------------------------------------------------------------------------
 export ZSH="$HOME/.oh-my-zsh"
 ZSH_THEME="robbyrussell"
-plugins=(git mise docker gh brew z)
+# mise の activate はパス変数の後で明示的に行う（plugin だと PATH 確定前の mise を掴むため不使用）
+plugins=(git docker gh brew z)
 source $ZSH/oh-my-zsh.sh
 # ------------------------------------------------------------------------
 # 言語・ロケール
@@ -18,6 +19,8 @@ export LANG=ja_JP.UTF-8
 # パス変数
 # ------------------------------------------------------------------------
 export PATH="$HOME/.local/bin:$PATH"
+# mise activate（PATH 先頭の mise を使う: 会社ベースライン配布の ~/.local/bin/mise があればそれ、無ければ brew 版。無い環境では何もしない）
+(( ${+commands[mise]} )) && eval "$(mise activate zsh)"
 # mysql-client は keg-only（macOS標準のmysqlとの衝突回避のため自動でPATHに入らない）
 # Apple Silicon: /opt/homebrew/opt, Intel: /usr/local/opt
 for _prefix in /opt/homebrew/opt/mysql-client /usr/local/opt/mysql-client; do

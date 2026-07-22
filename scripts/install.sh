@@ -28,11 +28,13 @@ mkdir -p "$HOME/.vimbackup"
 
 # 4. stow でシンボリックリンク作成
 echo "==> Creating symlinks with stow..."
-STOW_PACKAGES=(zsh vim git editorconfig agents claude codex mysql bin)
+STOW_PACKAGES=(zsh vim git editorconfig agents claude codex mysql bin mise)
 
 for pkg in "${STOW_PACKAGES[@]}"; do
   if [ -d "${DOTFILES_DIR}/settings/${pkg}" ]; then
-    stow -d "${DOTFILES_DIR}/settings" -t "$HOME" --adopt "${pkg}"
+    # --no-folding: ディレクトリごと symlink 化（folding）を禁止し、常にファイル単位でリンクする。
+    # folding されると ~/.config/mise 等の配下に外部ツールが作るファイルが repo に混入する（public のため漏洩リスク）
+    stow -d "${DOTFILES_DIR}/settings" -t "$HOME" --no-folding --adopt "${pkg}"
     echo "   [ok] ${pkg}"
   else
     echo "   [skip] ${pkg} (not found)"

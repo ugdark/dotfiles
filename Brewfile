@@ -37,7 +37,7 @@ brew "pinentry-mac"           # brew autoupdate --sudo 用
 # ============================================================
 # 開発環境 / ランタイム管理
 # ============================================================
-brew "mise"                   # ランタイムバージョン管理（Java, Node.js, yarn等）
+brew "mise"                   # ランタイムバージョン管理（Java, Node.js, yarn等）。会社ベースライン環境では ~/.local/bin/mise が PATH で優先される
 brew "sbt"                    # Scala ビルドツール
 brew "deno"                   # Deno ランタイム
 
