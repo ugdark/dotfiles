@@ -105,7 +105,10 @@ updated: 2026-02-12
 |-----------|------------|------|
 | authentication | authentication/ | 認証技術 |
 | scrum | scrum/ | スクラム |
+| team-management | team-management/ | チーム運営・EM（チームビルディング・ファシリテーション・面接・目標管理） |
 | development | development/ | 開発手法・ツール |
+| database | database/ | データベース |
+| ai-coding-agents | ai-coding-agents/ | AIコーディングエージェント |
 | go-lang | go-lang/ | Go言語 |
 | claude-code | claude-code/ | Claude Code |
 | infrastructure | infrastructure/ | インフラ・クラウド |
