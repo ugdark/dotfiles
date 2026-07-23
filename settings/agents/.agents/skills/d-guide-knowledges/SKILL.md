@@ -106,6 +106,7 @@ updated: 2026-02-12
 | authentication | authentication/ | 認証技術 |
 | scrum | scrum/ | スクラム |
 | team-management | team-management/ | チーム運営・EM（チームビルディング・ファシリテーション・面接・目標管理） |
+| ddd | ddd/ | DDD・ドメイン駆動設計（ユビキタス言語・ドメインモデリング） |
 | development | development/ | 開発手法・ツール |
 | database | database/ | データベース |
 | ai-coding-agents | ai-coding-agents/ | AIコーディングエージェント |
@@ -141,3 +142,4 @@ updated: 2026-02-12
 - **セクション番号**: 長い記事（5セクション以上）では番号付きを推奨
 - **ファイル名**: 日本語OK。内容が分かる名前をつける
 - **画像**: `images/` ディレクトリに配置し、相対パスで参照
+- **記事間リンク**: 本文中のリンクは**ルート基準のパス**で書く（例: `[記事名](scrum/記事名.md)`）。同一ディレクトリでも `記事名.md` だけの相対リンクや `../` は使わない — docsifyはデフォルト（relativePath無効）でリンクをルート基準で解決するため切れる
