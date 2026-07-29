@@ -53,7 +53,7 @@ fi
 # 6. macOS システム設定
 bash "${DOTFILES_DIR}/scripts/macos.sh"
 
-# 7. Homebrew 自動更新（15:00、Cask含む、sudo対応）
+# 7. Homebrew 自動更新（8:00、Cask含む、sudo対応）
 # 前提: Brewfile で pinentry-mac がインストール済み
 AUTOUPDATE_PLIST="$HOME/Library/LaunchAgents/com.github.domt4.homebrew-autoupdate.plist"
 echo "==> Setting up brew autoupdate..."
@@ -73,16 +73,16 @@ else
   echo "   [ok] autoupdate without sudo (formulaのみ確実)"
 fi
 
-# StartInterval(間隔) → StartCalendarInterval(15:00) に変更
+# StartInterval(間隔) → StartCalendarInterval(8:00) に変更
 if [ -f "${AUTOUPDATE_PLIST}" ]; then
   launchctl unload "${AUTOUPDATE_PLIST}" 2>/dev/null || true
   plutil -remove StartInterval "${AUTOUPDATE_PLIST}" 2>/dev/null || true
   plutil -remove StartCalendarInterval "${AUTOUPDATE_PLIST}" 2>/dev/null || true
   plutil -insert StartCalendarInterval -xml \
-    '<dict><key>Hour</key><integer>15</integer><key>Minute</key><integer>0</integer></dict>' \
+    '<dict><key>Hour</key><integer>8</integer><key>Minute</key><integer>0</integer></dict>' \
     "${AUTOUPDATE_PLIST}" 2>/dev/null || true
   launchctl load "${AUTOUPDATE_PLIST}"
-  echo "   [ok] schedule: 15:00"
+  echo "   [ok] schedule: 8:00"
 fi
 
 echo "==> Setup complete!"
