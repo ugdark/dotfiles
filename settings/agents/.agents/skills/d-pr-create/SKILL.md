@@ -1,10 +1,10 @@
 ---
 name: d-pr-create
-description: "PR作成 - PRテンプレートを読み込み、差分を分析してドラフトPRを作成する。「PR作って」「PRを作成して」「プルリク出して」と言われた時に自動適用する。PRやプルリクエストの作成に関する依頼では必ずこのスキルを使用すること。"
+description: "PR作成 - PRテンプレートを読み込み、差分を分析してPRを作成する。「PR作って」「PRを作成して」「プルリク出して」と言われた時に自動適用する。PRやプルリクエストの作成に関する依頼では必ずこのスキルを使用すること。"
 user-invocable: true
 disable-model-invocation: false
 allowed-tools: Read, Bash, Glob, Grep, AskUserQuestion
-argument-hint: "[--no-draft]"
+argument-hint: "[--draft]"
 ---
 
 # PR作成
@@ -89,7 +89,6 @@ Glob: `**/pull_request_template.md` でリポジトリ内の全テンプレー�
 
 ```bash
 gh pr create \
-  --draft \
   --assignee @me \
   --title "タイトル" \
   --body "$(cat <<'EOF'
@@ -98,18 +97,18 @@ EOF
 )"
 ```
 
-`--no-draft` 引数が指定された場合は `--draft` を省略する。
+`--draft` 引数が指定された場合はコマンドに `--draft` を追加する。
 
 ### Step 6: 完了報告
 
 - 作成したPRのURLを表示
-- ドラフトPRであることを明記
+- ドラフトPRの場合はその旨を明記
 
 ## 重要ルール
 
 - **短さ優先**: 冒頭3行要約＋本文20行以内が目安。長い説明はレビュアーに読まれない
 - **テンプレートを尊重**: プロジェクトにテンプレートがあれば必ずその構造に従う
-- **ドラフトがデフォルト**: `--no-draft` 指定時のみ通常PRにする
+- **通常PRがデフォルト**: `--draft` 指定時のみドラフトPRにする
 - **assigneeは常に付与**: `--assignee @me` を必ず付ける
 - **pushする前の確認は不要**: ドラフトPRなので安全
 - **CLAUDE.mdの指示を優先**: プロジェクトのCLAUDE.mdにreviewer・label等の指定があればそれに従う

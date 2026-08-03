@@ -144,6 +144,8 @@ run_mysql() {
     echo "[client]"
     echo "host=${host}"
     [[ -n "$port" ]] && echo "port=${port}"
+    # host=localhost だと mysql が port を無視して socket 接続に落ちるため TCP を強制
+    echo "protocol=TCP"
     echo "user=${user}"
     echo "password=${pass}"
   } >"$tmpcnf"
