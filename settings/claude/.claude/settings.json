@@ -7,6 +7,7 @@
       "Glob",
       "Grep",
       "Bash(*)",
+      "Bash(gh issue edit:*)",
       "Skill",
       "Edit(~/Works/**)",
       "Edit(~/.dotfiles/**)",
@@ -32,7 +33,6 @@
     ],
     "defaultMode": "auto"
   },
-  "model": "claude-fable-5[1m]",
   "hooks": {
     "PreToolUse": [
       {
