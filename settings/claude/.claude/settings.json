@@ -58,6 +58,7 @@
     "hookify@claude-plugins-official": true
   },
   "language": "japanese",
+  "outputStyle": "Concise",
   "effortLevel": "medium",
   "tui": "fullscreen",
   "showThinkingSummaries": false,
