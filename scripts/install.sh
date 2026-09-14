@@ -50,10 +50,30 @@ else
   echo "   [ok] Claude Code installed."
 fi
 
-# 6. macOS システム設定
+# 6. Google Cloud SDK（公式インストーラー。Homebrew版はcomponentマネージャーが無効化されており
+#    gke-gcloud-auth-plugin 等の追加コンポーネントが入れられないため、公式版に統一）
+echo "==> Installing Google Cloud SDK..."
+if [ -d "$HOME/google-cloud-sdk" ]; then
+  echo "   [ok] Google Cloud SDK already installed."
+else
+  ARCH="$(uname -m)"
+  case "$ARCH" in
+    arm64) GCLOUD_ARCH="darwin-arm" ;;
+    *)     GCLOUD_ARCH="darwin-x86_64" ;;
+  esac
+  curl -fsSL -o /tmp/gcloud-sdk.tar.gz \
+    "https://dl.google.com/dl/cloudsdk/channels/rapid/downloads/google-cloud-cli-${GCLOUD_ARCH}.tar.gz"
+  tar -xzf /tmp/gcloud-sdk.tar.gz -C "$HOME"
+  rm -f /tmp/gcloud-sdk.tar.gz
+  "$HOME/google-cloud-sdk/install.sh" --quiet --usage-reporting=false --path-update=false --command-completion=false
+  "$HOME/google-cloud-sdk/bin/gcloud" components install gke-gcloud-auth-plugin --quiet
+  echo "   [ok] Google Cloud SDK installed."
+fi
+
+# 7. macOS システム設定
 bash "${DOTFILES_DIR}/scripts/macos.sh"
 
-# 7. Homebrew 自動更新（8:00、Cask含む、sudo対応）
+# 8. Homebrew 自動更新（8:00、Cask含む、sudo対応）
 # 前提: Brewfile で pinentry-mac がインストール済み
 AUTOUPDATE_PLIST="$HOME/Library/LaunchAgents/com.github.domt4.homebrew-autoupdate.plist"
 echo "==> Setting up brew autoupdate..."

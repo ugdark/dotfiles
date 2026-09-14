@@ -27,6 +27,8 @@ for _prefix in /opt/homebrew/opt/mysql-client /usr/local/opt/mysql-client; do
   [[ -d "$_prefix/bin" ]] && export PATH="$_prefix/bin:$PATH" && break
 done
 unset _prefix
+# Google Cloud SDK（公式インストーラー版。gke-gcloud-auth-plugin利用のためHomebrew管理から移行）
+[[ -d "$HOME/google-cloud-sdk/bin" ]] && export PATH="$HOME/google-cloud-sdk/bin:$PATH"
 DOT=$HOME/.dotfiles
 # ------------------------------------------------------------------------
 # エイリアス

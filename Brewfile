@@ -61,7 +61,6 @@ brew "circleci"
 # ============================================================
 # クラウド / IaC
 # ============================================================
-cask "google-cloud-sdk"
 tap "hashicorp/tap"
 brew "hashicorp/tap/terraform"  # IaC（BSLライセンス化後はcore tapから外れたためhashicorp/tap経由）
 

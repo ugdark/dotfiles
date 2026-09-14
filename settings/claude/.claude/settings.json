@@ -33,6 +33,7 @@
     ],
     "defaultMode": "auto"
   },
+  "model": "claude-fable-5-1[1m]",
   "hooks": {
     "PreToolUse": [
       {
@@ -57,8 +58,8 @@
     "skill-creator@claude-plugins-official": true,
     "hookify@claude-plugins-official": true
   },
-  "language": "japanese",
   "outputStyle": "Concise",
+  "language": "japanese",
   "effortLevel": "medium",
   "tui": "fullscreen",
   "showThinkingSummaries": false,
