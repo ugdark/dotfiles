@@ -110,7 +110,21 @@ brew bundle cleanup --file=~/.dotfiles/Brewfile
 
 # Brewfile にないパッケージを削除（確認後に実行）
 brew bundle cleanup --file=~/.dotfiles/Brewfile --force
+
+# 自動更新のログ確認（失敗が続いていないか）
+brew autoupdate logs --lines=50
 ```
+
+### 自己更新するCaskは本体側の自動更新をオフにする
+
+Docker Desktop のようにアプリ自身が自動更新する Cask は、brew の記録と実体のバージョンがずれて
+`brew upgrade` が `cannot be upgraded as-is` で毎回失敗し、autoupdate が dmg を無駄にダウンロードし続ける。
+
+- Docker Desktop: Settings → Software updates → "Automatically check for updates" をオフ
+- 既にずれた場合の復旧（sudo でパスワードを聞かれるのでターミナルから実行）:
+  ```bash
+  brew reinstall --cask --force docker-desktop
+  ```
 
 ## プロジェクトでのplan利用
 
