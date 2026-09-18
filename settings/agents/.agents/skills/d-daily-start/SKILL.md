@@ -9,8 +9,8 @@ argument-hint: ""
 
 # daily日報の自動準備
 
-`~/.dotfiles/vault/daily/GGGG-WWW/YYYY-MM-DD.md` を準備し、前日予定の転記と Google カレンダーからの予定挿入をまとめて行う。
-（daily は週フォルダ `GGGG-WWW`（例 `2026-W27`。ISO週年+ISO週）配下に置く。`date +%G-W%V` で得る。Obsidian側フォーマット `GGGG-[W]WW` と一致させる）
+`~/.dotfiles/vault/daily/GGGG-MM-WWW/YYYY-MM-DD.md` を準備し、前日予定の転記と Google カレンダーからの予定挿入をまとめて行う。
+（daily は週フォルダ `GGGG-MM-WWW`（例 `2026-06-W27`。ISO週年+**その週の月曜日の月**+ISO週）配下に置く。`date -v-mon +%G-%m-W%V` で得る。月をまたぐ週でも1週=1フォルダを維持するため月曜基準にしている。Obsidian側フォーマット `GGGG-MM-[W]WW` は「その日の月」なので月境界の数日だけ意図的に不一致になる（Obsidianはエディタとしてのみ使う運用））
 
 ## 使用場面
 
@@ -23,7 +23,7 @@ Claudeは以下の状況で**自動的にこのスキルを適用**する：
 ## 前提
 
 - daily テンプレート: `~/.dotfiles/vault/templates/daily.md`
-- daily 保存先: `~/.dotfiles/vault/daily/GGGG-WWW/YYYY-MM-DD.md`（週フォルダ配下。例 `2026-W27`）
+- daily 保存先: `~/.dotfiles/vault/daily/GGGG-MM-WWW/YYYY-MM-DD.md`（週フォルダ配下。例 `2026-06-W27`）
 - カレンダー取得は MCP `claude_ai_Google_Calendar`（事前に `/mcp` で認証済みであること）
 
 ## 実行フロー
@@ -32,7 +32,7 @@ Claudeは以下の状況で**自動的にこのスキルを適用**する：
 
 - Bash: `date +"%Y-%m-%d"` で今日の日付を取得
 - Bash: `LANG=ja_JP.UTF-8 date +"%a"` で曜日を取得（月火水木金土日）
-- Bash: `date +"%G-W%V"` で週フォルダ名を取得（例 `2026-W27`。ISO週年+ISO週。年末年始も正しく処理）
+- Bash: `date -v-mon +"%G-%m-W%V"` で週フォルダ名を取得（例 `2026-06-W27`。その週の月曜日基準のISO週年+月+ISO週。`-v-mon` は今日が月曜ならそのまま、それ以外は直前の月曜に戻す。年末年始・月またぎも1週=1フォルダになる）
 - 今日のファイルパス: `~/.dotfiles/vault/daily/<週フォルダ>/YYYY-MM-DD.md`
 
 ### Step 2: 今日の daily ファイル準備
