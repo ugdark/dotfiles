@@ -9,6 +9,8 @@
 
 # 会社/環境固有の設定
 *.local
+# 実ファイルは会社pluginを混ぜて手元で運用するため管理外（settings.json.templateが個人用ベース）
+settings/claude/.claude/settings.json
 # 例外: stowで ~/.local/bin/ にリンクするスクリプト群
 !settings/bin/.local/
 !settings/bin/.local/**
