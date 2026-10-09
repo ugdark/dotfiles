@@ -18,5 +18,9 @@ settings/claude/.claude/settings.json
 # ローカル専用（plans, knowledges, links等）
 vault/
 
+# Claude Codeがclaude.aiから同期するスキル（~/.claude/skills が symlink のため混入する）
+settings/agents/.agents/skills/synced/
+settings/agents/.agents/skills/.trash/
+
 # Codex が自動生成するマシン固有の状態（trust_level・NUXフラグ等）
 settings/codex/.codex/config.toml
