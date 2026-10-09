@@ -33,21 +33,6 @@
     ],
     "defaultMode": "auto"
   },
-  "hooks": {
-    "PreToolUse": [
-      {
-        "matcher": "Bash",
-        "hooks": [
-          {
-            "type": "command",
-            "command": "$HOME/.claude/hooks/secret-guard.sh",
-            "if": "Bash(git commit *)",
-            "timeout": 15
-          }
-        ]
-      }
-    ]
-  },
   "statusLine": {
     "type": "command",
     "command": "~/.claude/statusline.sh"

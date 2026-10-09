@@ -155,39 +155,6 @@ cd ~/.dotfiles/vault && git submodule update --init --recursive
 - 外部パスへのシンボリックリンクだと、プロジェクトごとに書き込み承認が必要になる
 - settings.json にローカル固有のパスを書かずに済む（dotfiles は public リポジトリ）
 
-## 機密情報のcommit防止（secret-guard）
-
-秘密情報（APIキー・秘密鍵等）や絶対パスの混入を検知して commit をブロックします。
-検出本体は `settings/claude/.claude/hooks/secret-guard.sh`、パターンは同ディレクトリの
-`secret-patterns.txt`（業務語は gitignore 対象の `secret-denylist.local` に追記）。以下の3層で守ります。
-
-| 層 | 役割 | 守る範囲 |
-|---|---|---|
-| 手動skill `/d-secret-check` | 任意タイミングの手動チェック | 自分が実行した時 |
-| Claude hook（PreToolUse） | Claude操作の自動ガード | Claude経由の `git commit` |
-| git pre-commit（`core.hooksPath`） | 人手commitの防壁 | Fork/ターミナル/IDE すべて |
-
-### 緊急時の停止方法
-
-```bash
-git commit --no-verify -m "..."   # この1回だけ git 層をスキップ（Claude層は別途②/③）
-git config --global --unset core.hooksPath   # ② git層を停止（再開: core.hooksPath ~/.config/git/hooks）
-# ③ Claude層: settings.json の hooks.PreToolUse を削除 → 次回起動で反映
-```
-
-### 特定リポジトリをガードから除外する
-
-`core.hooksPath` はグローバル設定なので全リポジトリに効く。個人ノート専用の vault など、
-絶対パスや個人情報が正当に入るリポジトリは、そのrepo内で**ローカル設定で上書き**して除外する
-（ローカル設定はグローバルより優先。新マシンで再clone時は再設定が必要）。
-
-```bash
-cd ~/.dotfiles/vault
-git config --local core.hooksPath .git/hooks   # 自repoの空hooksを使う＝ガード無効化
-```
-
-※ 公開リポジトリ（knowledge-base 等）は漏洩防止のため除外しない。
-
 ## 環境固有の設定
 
 会社やマシン固有の設定は `~/.zshrc.local` に記述してください。

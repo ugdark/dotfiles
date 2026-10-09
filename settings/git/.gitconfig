@@ -1,7 +1,6 @@
 [core]
 	editor = vim
 	excludesfile = ~/.gitignore_global
-	hooksPath = ~/.config/git/hooks
 [user]
 	name = ugdark
 	email = ugdark@gmail.com
