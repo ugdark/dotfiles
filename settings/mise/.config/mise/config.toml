@@ -1,5 +1,1 @@
 [tools]
-java = "temurin-21.0.12+101.0.LTS"
-node = "24.13.1"
-pnpm = "latest"
-sbt = "1.12.12"

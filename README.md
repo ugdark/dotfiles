@@ -51,7 +51,7 @@ bash ~/.dotfiles/scripts/install.sh
 │   └── bin/.local/bin/    # ~/.local/bin に配置するユーザースクリプト
 │       └── db-query       # Sequel Ace連携 MySQL ラッパー（d-sql skill用）
 ├── scripts/               # セットアップスクリプト
-│   ├── install.sh         # メインエントリ（brew.sh → OMZ → stow → macos.sh → autoupdate）
+│   ├── install.sh         # メインエントリ（brew.sh → OMZ → stow → macos.sh）
 │   ├── brew.sh            # Xcode CLT + Homebrew + brew bundle
 │   └── macos.sh           # macOSシステム設定（defaults write）
 ├── vault/                 # ローカル専用（gitignore対象 / 別repo: ugdark/dovault, private）
@@ -93,32 +93,20 @@ stow -d ~/.dotfiles/settings -t $HOME --adopt zsh
 ## Homebrew の管理
 
 ```bash
-# パッケージの手動更新
+# パッケージの手動更新（自動更新は意図しないパスワード要求が出るため使わない）
 brew update && brew upgrade
-
-# 自動更新の有効化（バックグラウンドで定期実行）
-brew autoupdate start --upgrade --cleanup
-
-# 自動更新の状態確認
-brew autoupdate status
-
-# 自動更新の停止
-brew autoupdate stop
 
 # Brewfile にないパッケージを確認
 brew bundle cleanup --file=~/.dotfiles/Brewfile
 
 # Brewfile にないパッケージを削除（確認後に実行）
 brew bundle cleanup --file=~/.dotfiles/Brewfile --force
-
-# 自動更新のログ確認（失敗が続いていないか）
-brew autoupdate logs --lines=50
 ```
 
 ### 自己更新するCaskは本体側の自動更新をオフにする
 
 Docker Desktop のようにアプリ自身が自動更新する Cask は、brew の記録と実体のバージョンがずれて
-`brew upgrade` が `cannot be upgraded as-is` で毎回失敗し、autoupdate が dmg を無駄にダウンロードし続ける。
+`brew upgrade` が `cannot be upgraded as-is` で毎回失敗し、dmg を無駄にダウンロードし続ける。
 
 - Docker Desktop: Settings → Software updates → "Automatically check for updates" をオフ
 - 既にずれた場合の復旧（sudo でパスワードを聞かれるのでターミナルから実行）:
